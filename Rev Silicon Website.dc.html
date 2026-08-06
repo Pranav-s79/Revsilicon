@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F5F3;-webkit-font-smoothing:antialiased;font-family:Archivo,"Helvetica Neue",Helvetica,Arial,sans-serif}
+a{color:#6E1220;text-decoration:none}
+a:hover{color:#8E1A2B}
+::selection{background:#6E1220;color:#fff}
+input,textarea,select,button{font-family:inherit}
+@keyframes rs-spin{to{transform:rotate(360deg)}}
+@keyframes rs-spin-rev{to{transform:rotate(-360deg)}}
+@keyframes rs-dash{to{stroke-dashoffset:-160}}
+@keyframes rs-pulse{0%{opacity:.25}50%{opacity:.7}100%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms !important;animation-iteration-count:1 !important}}
+</style>
+</helmet>
+<div style="--accent:{{ accent }};min-height:100vh;background:#F5F5F3;color:#0A1422">
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:rgba(10,20,34,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.09)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between">
+    <a href="#home" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:11px;text-decoration:none">
+      <img src="assets/logo-plate.png" alt="Rev Silicon" style="width:28px;height:28px;border-radius:2px;display:block">
+      <span style="font:500 12.5px/1 Archivo,Helvetica,sans-serif;letter-spacing:.2em;color:#F2F3F5">REV SILICON</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:34px">
+      <a href="#home" onClick="{{ goHome }}" style="position:relative;font:400 13.5px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.66);text-decoration:none;padding:4px 0" style-hover="color:#fff">Home<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#A5253A"></span></sc-if></a>
+      <a href="#about" onClick="{{ goAbout }}" style="position:relative;font:400 13.5px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.66);text-decoration:none;padding:4px 0" style-hover="color:#fff">About<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#A5253A"></span></sc-if></a>
+      <a href="#join" onClick="{{ goJoin }}" style="position:relative;font:400 13.5px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.66);text-decoration:none;padding:4px 0" style-hover="color:#fff">Join<sc-if value="{{ isJoin }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#A5253A"></span></sc-if></a>
+      <a href="#contact" onClick="{{ goContact }}" style="position:relative;font:400 13.5px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.66);text-decoration:none;padding:4px 0" style-hover="color:#fff">Contact<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#A5253A"></span></sc-if></a>
+      <a href="#join" onClick="{{ goJoin }}" style="font:400 13px/1 Archivo,Helvetica,sans-serif;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.28);padding:9px 16px" style-hover="background:#fff;color:#0A1422;border-color:#fff">Interest form</a>
+    </div>
+  </div>
+</nav>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main data-screen-label="Home">
+
+  <section style="background:#F5F5F3;padding:0 0 30px;position:relative">
+    <div style="position:absolute;left:0;right:0;top:0;height:860px;background:#0A1422;overflow:hidden"><div style="position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 118%, rgba(110,18,32,.22) 0%, rgba(10,20,34,0) 62%)"></div></div>
+    <div style="max-width:1240px;margin:0 auto;padding:170px 40px 0;position:relative;text-align:center">
+      <p style="font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.44);margin:0 0 34px">Texas A&amp;M University · Student Organization</p>
+      <h1 style="font:500 clamp(42px,5.6vw,78px)/1.04 Archivo,Helvetica,sans-serif;letter-spacing:-.035em;color:#FFFFFF;margin:0">From architecture to tapeout.<br><span style="color:rgba(255,255,255,.42)">Students designing real silicon.</span></h1>
+      <p style="max-width:600px;margin:32px auto 0;font:400 17px/1.6 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.60)">Rev Silicon is a student-led semiconductor organization. Members take one shared design through the full flow — and learn the discipline that gets a chip to silicon.</p>
+      <div style="display:flex;gap:14px;justify-content:center;margin-top:38px">
+        <a href="#join" onClick="{{ goJoin }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:#fff;background:var(--accent,#6E1220);padding:14px 24px;text-decoration:none;border:1px solid var(--accent,#6E1220)" style-hover="background:#8E1A2B;border-color:#8E1A2B">Join the club</a>
+        <a href="#project" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.86);padding:14px 24px;text-decoration:none;border:1px solid rgba(255,255,255,.22)" style-hover="border-color:rgba(255,255,255,.65);color:#fff">Read the project brief</a>
+      </div>
+
+      <div ref="{{ setStage }}" onMouseMove="{{ onHover }}" onMouseLeave="{{ onLeave }}" style="position:relative;margin-top:56px;height:560px">
+        <div style="position:absolute;left:50%;top:0;width:1060px;height:560px;margin-left:-530px;transform-origin:top center;display:flex;align-items:center;justify-content:center;perspective:2400px;perspective-origin:50% 42%">
+        <div style="position:absolute;left:50%;bottom:26px;width:820px;height:110px;margin-left:-410px;background:radial-gradient(50% 50% at 50% 50%, rgba(10,20,34,.20) 0%, rgba(10,20,34,0) 72%);filter:blur(4px);pointer-events:none"></div>
+        <div onPointerDown="{{ onDown }}" onPointerMove="{{ onDrag }}" onPointerUp="{{ onUp }}" onPointerCancel="{{ onUp }}" onDoubleClick="{{ reset }}" style="width:1060px;height:560px;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;cursor:grab;touch-action:none" style-active="cursor:grabbing">
+          <div ref="{{ setScene }}" style="position:relative;width:900px;height:480px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-28deg)">
+
+            <div style="position:absolute;inset:0;background:linear-gradient(148deg,#15293F 0%,#0D1D30 42%,#0A1524 100%);border:1px solid rgba(255,255,255,.16);box-shadow:0 0 0 1px rgba(0,0,0,.4), 0 60px 80px -40px rgba(10,20,34,.75);transform-style:preserve-3d">
+
+              <svg viewBox="0 0 900 480" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true">
+                <g stroke="rgba(190,210,240,.20)" stroke-width="1" fill="none">
+                  <polyline points="40,60 40,120 96,120"></polyline>
+                  <polyline points="40,150 70,150 70,220 40,220"></polyline>
+                  <polyline points="60,300 60,380 130,380 130,430"></polyline>
+                  <polyline points="860,60 860,140 800,140"></polyline>
+                  <polyline points="860,180 830,180 830,260"></polyline>
+                  <polyline points="860,420 800,420 800,360"></polyline>
+                  <polyline points="200,40 200,64 560,64 560,40"></polyline>
+                  <polyline points="240,440 240,416 620,416 620,440"></polyline>
+                  <polyline points="600,90 640,90 640,60 700,60"></polyline>
+                  <polyline points="600,400 660,400 660,430"></polyline>
+                </g>
+                <g fill="none" stroke="rgba(190,210,240,.26)" stroke-width="1">
+                  <circle cx="40" cy="60" r="5"></circle><circle cx="40" cy="150" r="5"></circle><circle cx="40" cy="220" r="5"></circle>
+                  <circle cx="60" cy="300" r="5"></circle><circle cx="130" cy="430" r="5"></circle>
+                  <circle cx="860" cy="60" r="5"></circle><circle cx="860" cy="180" r="5"></circle><circle cx="830" cy="260" r="5"></circle>
+                  <circle cx="860" cy="420" r="5"></circle><circle cx="700" cy="60" r="5"></circle><circle cx="660" cy="430" r="5"></circle>
+                  <circle cx="200" cy="40" r="5"></circle><circle cx="560" cy="40" r="5"></circle><circle cx="240" cy="440" r="5"></circle><circle cx="620" cy="440" r="5"></circle>
+                </g>
+                <g stroke="var(--accent,#6E1220)" stroke-width="1.2" fill="none" opacity=".85">
+                  <polyline points="76,240 108,240 108,196 120,196"></polyline>
+                  <polyline points="76,262 108,262 108,306 120,306"></polyline>
+                  <polyline points="620,240 660,240 660,196"></polyline>
+                </g>
+                <g stroke="rgba(165,190,225,.38)" stroke-width="1" fill="none" stroke-dasharray="6 10" style="animation:rs-dash 6s linear infinite">
+                  <path d="M120 150 H150 M120 190 H150 M120 230 H150 M120 270 H150 M120 310 H150 M120 350 H150"></path>
+                </g>
+              </svg>
+
+              <div style="position:absolute;left:24px;top:196px;width:44px;height:88px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);transform:translateZ(6px)"></div>
+              <div style="position:absolute;left:806px;top:150px;width:60px;height:22px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.035);transform:translateZ(5px)"></div>
+              <div style="position:absolute;left:806px;top:184px;width:60px;height:22px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.035);transform:translateZ(5px)"></div>
+
+              <div style="position:absolute;left:230px;top:452px;width:440px;height:26px;display:grid;grid-template-columns:repeat(26,1fr);gap:4px;transform:translateZ(2px)">
+                <sc-for list="{{ fingers }}" as="f" hint-placeholder-count="26"><span style="background:linear-gradient(180deg,rgba(214,222,235,.55),rgba(214,222,235,.22))"></span></sc-for>
+              </div>
+
+              <div style="position:absolute;left:120px;top:80px;width:440px;height:320px;background:#101F33;border:1px solid rgba(255,255,255,.20);transform:translateZ(12px);box-shadow:0 18px 26px -18px rgba(0,0,0,.8);transform-style:preserve-3d">
+                <div style="position:absolute;left:30px;top:12px;width:380px;height:30px;display:grid;grid-template-columns:repeat(10,1fr);gap:4px">
+                  <sc-for list="{{ banks }}" as="b" hint-placeholder-count="10"><span style="background:rgba(170,195,230,.14);border:1px solid rgba(255,255,255,.10)"></span></sc-for>
+                </div>
+                <div style="position:absolute;left:30px;top:278px;width:380px;height:30px;display:grid;grid-template-columns:repeat(10,1fr);gap:4px">
+                  <sc-for list="{{ banks }}" as="b" hint-placeholder-count="10"><span style="background:rgba(170,195,230,.14);border:1px solid rgba(255,255,255,.10)"></span></sc-for>
+                </div>
+                <div style="position:absolute;left:30px;top:52px;width:34px;height:216px;background:#16283F;border:1px solid rgba(255,255,255,.18);box-shadow:0 6px 10px -6px rgba(0,0,0,.9)"></div>
+                <div style="position:absolute;left:72px;top:52px;width:34px;height:216px;background:#16283F;border:1px solid rgba(255,255,255,.18);box-shadow:0 6px 10px -6px rgba(0,0,0,.9)"></div>
+                <div style="position:absolute;left:334px;top:52px;width:34px;height:216px;background:#16283F;border:1px solid rgba(255,255,255,.18);box-shadow:0 6px 10px -6px rgba(0,0,0,.9)"></div>
+                <div style="position:absolute;left:376px;top:52px;width:34px;height:216px;background:#16283F;border:1px solid rgba(255,255,255,.18);box-shadow:0 6px 10px -6px rgba(0,0,0,.9)"></div>
+
+                <div style="position:absolute;left:120px;top:48px;width:200px;height:224px;background:#0B1829;border:1px solid rgba(255,255,255,.26);transform:translateZ(8px);box-shadow:0 14px 22px -14px rgba(0,0,0,.9);transform-style:preserve-3d">
+                  <div style="position:absolute;inset:10px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:5px">
+                    <sc-for list="{{ clusters }}" as="c" hint-placeholder-count="16">
+                      <div style="border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.035);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;padding:3px">
+                        <span style="background:rgba(200,215,238,.17)"></span><span style="background:rgba(200,215,238,.17)"></span><span style="background:rgba(200,215,238,.12)"></span><span style="background:rgba(200,215,238,.17)"></span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:#0A1422;border:1px solid var(--accent,#6E1220);display:flex;align-items:center;justify-content:center;transform:translateZ(6px)">
+                    <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(165,37,58,.55);display:flex;align-items:center;justify-content:center">
+                      <div style="width:16px;height:16px;background:var(--accent,#6E1220)"></div>
+                    </div>
+                  </div>
+                  <div style="position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:1px dashed rgba(165,37,58,.45);transform:translateZ(14px);animation:rs-spin 34s linear infinite"></div>
+                  <div style="position:absolute;left:50%;top:50%;width:186px;height:186px;margin:-93px 0 0 -93px;border-radius:50%;border:1px dashed rgba(180,200,230,.20);transform:translateZ(18px);animation:rs-spin-rev 52s linear infinite"></div>
+                </div>
+              </div>
+
+              <div style="position:absolute;left:620px;top:56px;width:180px;height:180px;border:1px solid rgba(255,255,255,.14);transform:translateZ(16px);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.02)">
+                <div style="width:154px;height:154px;border-radius:50%;border:1px solid rgba(255,255,255,.18);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from 0deg, rgba(214,226,244,.16) 0deg 2.2deg, rgba(214,226,244,0) 2.2deg 20deg);animation:rs-spin 3.4s linear infinite"></div>
+                  <div style="position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#0B1829;border:1px solid rgba(255,255,255,.22)"></div>
+                </div>
+              </div>
+              <div style="position:absolute;left:620px;top:248px;width:180px;height:180px;border:1px solid rgba(255,255,255,.14);transform:translateZ(16px);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.02)">
+                <div style="width:154px;height:154px;border-radius:50%;border:1px solid rgba(255,255,255,.18);position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from 0deg, rgba(214,226,244,.16) 0deg 2.2deg, rgba(214,226,244,0) 2.2deg 20deg);animation:rs-spin 4.1s linear infinite"></div>
+                  <div style="position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#0B1829;border:1px solid rgba(255,255,255,.22)"></div>
+                </div>
+              </div>
+
+              <div style="position:absolute;left:36px;top:34px;display:flex;align-items:center;gap:8px;transform:translateZ(3px);opacity:.9">
+                <img src="assets/logo-plate.png" alt="" style="width:26px;height:26px;display:block;opacity:.8">
+                <span style="font:400 9px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;color:rgba(214,226,244,.55)">REV SILICON</span>
+              </div>
+
+              <div style="position:absolute;inset:0;transform:translateZ(20px);pointer-events:none;opacity:{{ annOpacity }};transition:opacity .5s ease">
+                <div style="position:absolute;left:120px;top:414px;width:200px;border-top:1px solid rgba(214,226,244,.35)"></div>
+                <p style="position:absolute;left:120px;top:420px;margin:0;font:400 9.5px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(214,226,244,.62)">01 HBM-CLASS MEMORY ×4<br><span style="color:rgba(214,226,244,.38)">PLACEHOLDER CAPACITY</span></p>
+                <div style="position:absolute;left:240px;top:22px;width:180px;border-top:1px solid rgba(214,226,244,.35)"></div>
+                <p style="position:absolute;left:240px;top:-4px;margin:0;font:400 9.5px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(214,226,244,.62)">02 L2 CACHE BANKS<br><span style="color:rgba(214,226,244,.38)">BANKED / MSHR PER BANK</span></p>
+                <div style="position:absolute;left:466px;top:190px;width:120px;border-top:1px solid rgba(165,37,58,.6)"></div>
+                <p style="position:absolute;left:472px;top:152px;margin:0;font:400 9.5px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(214,226,244,.72)">03 COMPUTE CLUSTERS ×16<br><span style="color:rgba(214,226,244,.40)">SOCKETS · CORES · WARPS</span></p>
+                <div style="position:absolute;left:560px;top:300px;width:70px;border-top:1px solid rgba(214,226,244,.35)"></div>
+                <p style="position:absolute;left:560px;top:306px;margin:0;font:400 9.5px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(214,226,244,.62)">04 THERMAL MODULE</p>
+              </div>
+
+              <div style="position:absolute;left:0;top:480px;width:900px;height:11px;background:#07101C;transform-origin:top center;transform:rotateX(-90deg)"></div>
+              <div style="position:absolute;left:0;top:0;width:900px;height:11px;background:#060E18;transform-origin:top center;transform:rotateX(-90deg)"></div>
+              <div style="position:absolute;left:0;top:0;width:480px;height:11px;background:#08121F;transform-origin:0 0;transform:rotateZ(90deg) rotateX(-90deg)"></div>
+              <div style="position:absolute;left:900px;top:0;width:480px;height:11px;background:#08121F;transform-origin:0 0;transform:rotateZ(90deg) rotateX(-90deg)"></div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E3E5E8;padding-top:16px;margin-top:26px;text-align:left;gap:24px">
+        <p style="margin:0;font:400 10px/1.7 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#8A94A3">REV SILICON / ACCELERATOR I — CONCEPT MODEL<br><span style="color:#B0B7C0">RISC-V GPGPU CLASS · REV 0.1 · NOT TO SPECIFICATION</span></p>
+        <p style="margin:0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#8A94A3;text-transform:uppercase">Drag to rotate · Double-click to reset</p>
+        <div style="display:flex;gap:10px">
+          <button onClick="{{ toggleAnn }}" style="font:400 11px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#0A1422;background:transparent;border:1px solid #D5D8DC;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422">Annotations</button>
+          <button onClick="{{ reset }}" style="font:400 11px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#0A1422;background:transparent;border:1px solid #D5D8DC;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422">Reset view</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;padding:130px 0 140px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">01 / Mission</p>
+        <div style="max-width:720px">
+          <h2 style="margin:0;font:500 42px/1.14 Archivo,Helvetica,sans-serif;letter-spacing:-.028em;color:#0A1422;text-wrap:pretty">Students learn chip design by building a chip.</h2>
+          <p style="margin:28px 0 0;font:400 17px/1.68 Archivo,Helvetica,sans-serif;color:#4A5361;text-wrap:pretty">Members join a technical division, contribute to one shared design, and follow it through the stages a real part goes through — architecture, RTL, verification, physical design, tapeout, and bring-up. Work is reviewed, documented, and handed forward.</p>
+          <p style="margin:20px 0 0;font:400 17px/1.68 Archivo,Helvetica,sans-serif;color:#4A5361;text-wrap:pretty">We are a new organization. Our first year is about establishing the toolchain, the review process, and a project worth taping out.</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;border-top:1px solid #E3E5E8">
+            <div style="padding:22px 24px 0 0;border-right:1px solid #E3E5E8">
+              <p style="margin:0 0 8px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">A</p>
+              <p style="margin:0;font:400 14.5px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Open to every major and every year.</p>
+            </div>
+            <div style="padding:22px 24px 0;border-right:1px solid #E3E5E8">
+              <p style="margin:0 0 8px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">B</p>
+              <p style="margin:0;font:400 14.5px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">One shared design, not scattered side projects.</p>
+            </div>
+            <div style="padding:22px 0 0 24px">
+              <p style="margin:0 0 8px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">C</p>
+              <p style="margin:0;font:400 14.5px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Student-run, faculty-supported.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="project" style="background:#FFFFFF;border-top:1px solid #E3E5E8;padding:130px 0 140px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <div>
+          <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">02 / Current project</p>
+          <p style="margin:18px 0 0;font:400 10.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#B0B7C0">Scope in review<br>Founding team, 2026</p>
+        </div>
+        <div>
+          <h2 style="margin:0;font:500 42px/1.14 Archivo,Helvetica,sans-serif;letter-spacing:-.028em;color:#0A1422">A student GPU accelerator.</h2>
+          <p style="margin:24px 0 0;max-width:720px;font:400 17px/1.68 Archivo,Helvetica,sans-serif;color:#4A5361;text-wrap:pretty">Our first project is a GPU-class accelerator based on an open RISC-V GPGPU architecture. The brief below is a placeholder: scope, targets, and process are being defined by the founding team.</p>
+
+          <div style="margin-top:56px;border-top:1px solid #E3E5E8">
+            <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;padding:16px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8A94A3">Program</span>
+              <span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Accelerator I</span>
+            </div>
+            <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;padding:16px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8A94A3">Architecture</span>
+              <span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Open RISC-V GPGPU — clusters, sockets, cores, warp scheduling</span>
+            </div>
+            <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;padding:16px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8A94A3">Current phase</span>
+              <span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Architecture study &amp; scoping</span>
+            </div>
+            <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;padding:16px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8A94A3">Flow &amp; PDK</span>
+              <span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#8A94A3">To be selected — placeholder</span>
+            </div>
+            <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;padding:16px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8A94A3">Contributors</span>
+              <span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Architecture · RTL · Verification · Physical design · Tooling</span>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:64px">
+            <div style="padding:0 40px 34px 0;border-right:1px solid #E3E5E8;border-bottom:1px solid #E3E5E8">
+              <h3 style="margin:0 0 12px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Overview</h3>
+              <p style="margin:0;font:400 15px/1.65 Archivo,Helvetica,sans-serif;color:#4A5361">A parallel compute block with a small number of clusters, a shared cache hierarchy, and a host interface. Sized so a student team can verify it and close timing on it.</p>
+            </div>
+            <div style="padding:0 0 34px 40px;border-bottom:1px solid #E3E5E8">
+              <h3 style="margin:0 0 12px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Design goals</h3>
+              <p style="margin:0;font:400 15px/1.65 Archivo,Helvetica,sans-serif;color:#4A5361">Correctness before performance. A configuration small enough to tape out, documented well enough that next year's members can extend it.</p>
+            </div>
+            <div style="padding:34px 40px 0 0;border-right:1px solid #E3E5E8">
+              <h3 style="margin:0 0 12px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Why it matters</h3>
+              <p style="margin:0;font:400 15px/1.65 Archivo,Helvetica,sans-serif;color:#4A5361">Most students never see a design past simulation. Carrying one block through physical design and tapeout teaches the parts of the job coursework leaves out.</p>
+            </div>
+            <div style="padding:34px 0 0 40px">
+              <h3 style="margin:0 0 12px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Roadmap</h3>
+              <div style="display:flex;flex-direction:column;gap:9px;margin-top:2px">
+                <div style="display:flex;gap:14px;align-items:baseline"><span style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:var(--accent,#6E1220);letter-spacing:.1em">NOW</span><span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Architecture study, tooling setup</span></div>
+                <div style="display:flex;gap:14px;align-items:baseline"><span style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">NEXT</span><span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#4A5361">RTL for a single cluster, testbench</span></div>
+                <div style="display:flex;gap:14px;align-items:baseline"><span style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">LATER</span><span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#4A5361">Physical design trial, tapeout submission</span></div>
+                <div style="display:flex;gap:14px;align-items:baseline"><span style="font:400 10.5px/1.5 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">TBD</span><span style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#4A5361">Bring-up board and test plan</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;border-top:1px solid #E3E5E8;padding:130px 0 130px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">03 / Progression</p>
+        <div>
+          <h2 style="margin:0;font:500 42px/1.14 Archivo,Helvetica,sans-serif;letter-spacing:-.028em;color:#0A1422">Six milestones, and where we start.</h2>
+          <p style="margin:22px 0 0;max-width:640px;font:400 17px/1.68 Archivo,Helvetica,sans-serif;color:#4A5361">Transistor counts on a log scale. The last mark is not a claim — it is where this organization begins.</p>
+        </div>
+      </div>
+
+      <div data-reveal="1" style="margin-top:70px">
+        <svg viewBox="0 0 1160 470" style="width:100%;height:auto;display:block;overflow:visible" aria-label="Semiconductor milestones on a log-scale transistor count chart">
+          <g stroke="#E0E3E7" stroke-width="1">
+            <line x1="96" y1="70" x2="1120" y2="70" stroke-dasharray="2 6"></line>
+            <line x1="96" y1="150" x2="1120" y2="150" stroke-dasharray="2 6"></line>
+            <line x1="96" y1="230" x2="1120" y2="230" stroke-dasharray="2 6"></line>
+            <line x1="96" y1="310" x2="1120" y2="310" stroke-dasharray="2 6"></line>
+          </g>
+          <line x1="96" y1="390" x2="1120" y2="390" stroke="#0A1422" stroke-width="1"></line>
+          <line x1="96" y1="52" x2="96" y2="390" stroke="#0A1422" stroke-width="1"></line>
+          <g font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#8A94A3" letter-spacing="1">
+            <text x="84" y="74" text-anchor="end">10¹²</text>
+            <text x="84" y="154" text-anchor="end">10⁹</text>
+            <text x="84" y="234" text-anchor="end">10⁶</text>
+            <text x="84" y="314" text-anchor="end">10³</text>
+            <text x="84" y="394" text-anchor="end">10⁰</text>
+            <text x="96" y="30" fill="#0A1422" letter-spacing="1.6">TRANSISTORS PER CHIP</text>
+          </g>
+          <path d="M120 386 L262 380 L420 306 L648 200 L858 118" fill="none" stroke="#16294A" stroke-width="1.4"></path>
+          <path d="M858 118 L1030 86" fill="none" stroke="#16294A" stroke-width="1.4" stroke-dasharray="4 6" opacity=".45"></path>
+          <g stroke="#C9CDD3" stroke-width="1">
+            <line x1="120" y1="390" x2="120" y2="398"></line>
+            <line x1="262" y1="390" x2="262" y2="398"></line>
+            <line x1="420" y1="390" x2="420" y2="398"></line>
+            <line x1="648" y1="390" x2="648" y2="398"></line>
+            <line x1="858" y1="390" x2="858" y2="398"></line>
+          </g>
+          <g font-family="'IBM Plex Mono',monospace" font-size="10" fill="#8A94A3" text-anchor="middle" letter-spacing="1">
+            <text x="120" y="416">1947</text><text x="262" y="416">1958</text><text x="420" y="416">1971</text><text x="648" y="416">1999</text><text x="858" y="416">2016</text>
+          </g>
+          <g fill="#16294A"><circle cx="120" cy="386" r="4"></circle><circle cx="262" cy="380" r="4"></circle><circle cx="420" cy="306" r="4"></circle><circle cx="648" cy="200" r="4"></circle><circle cx="858" cy="118" r="4"></circle></g>
+          <g font-family="Archivo,Helvetica,sans-serif" font-size="14" fill="#0A1422">
+            <text x="120" y="360">Transistor</text>
+            <text x="262" y="354">Integrated circuit</text>
+            <text x="420" y="280">Microprocessor</text>
+            <text x="648" y="174">Programmable GPU</text>
+            <text x="858" y="92">AI accelerators</text>
+          </g>
+          <g font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#9AA2AC" letter-spacing=".6">
+            <text x="120" y="344">1 device</text>
+            <text x="262" y="338">first monolithic IC</text>
+            <text x="420" y="264">~2,300 devices</text>
+            <text x="648" y="158">parallel compute</text>
+            <text x="858" y="76">domain-specific</text>
+          </g>
+          <line x1="1030" y1="390" x2="1030" y2="120" stroke="var(--accent,#6E1220)" stroke-width="1.2" stroke-dasharray="4 5"></line>
+          <rect x="1024" y="114" width="12" height="12" fill="#F5F5F3" stroke="var(--accent,#6E1220)" stroke-width="1.6"></rect>
+          <line x1="1030" y1="390" x2="1030" y2="398" stroke="var(--accent,#6E1220)" stroke-width="1"></line>
+          <text x="1030" y="416" font-family="'IBM Plex Mono',monospace" font-size="10" fill="var(--accent,#6E1220)" text-anchor="middle" letter-spacing="1">2026</text>
+          <text x="1046" y="102" font-family="Archivo,Helvetica,sans-serif" font-size="15" fill="var(--accent,#6E1220)" text-anchor="end">Rev Silicon</text>
+          <text x="1018" y="152" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#9AA2AC" text-anchor="end" letter-spacing=".6">you are here —</text>
+          <text x="1018" y="166" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#9AA2AC" text-anchor="end" letter-spacing=".6">first tapeout in planning</text>
+        </svg>
+        <p style="margin:26px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0;text-transform:uppercase">Position on the x-axis indicates date only. No performance or density claim is implied.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;border-top:1px solid #E3E5E8;padding:130px 0 140px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">04 / Process</p>
+        <div>
+          <h2 style="margin:0;font:500 42px/1.14 Archivo,Helvetica,sans-serif;letter-spacing:-.028em;color:#0A1422">Concept to silicon.</h2>
+          <p style="margin:22px 0 0;max-width:620px;font:400 17px/1.68 Archivo,Helvetica,sans-serif;color:#4A5361">Every member works inside this pipeline. Divisions own stages; the design moves left to right, and reviews gate each handoff.</p>
+        </div>
+      </div>
+
+      <div data-reveal="1" style="margin-top:80px;position:relative">
+        <div style="position:absolute;left:0;right:0;top:9px;height:1px;background:#D7DBE0"></div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative">
+          <div style="padding:0 28px 0 0;border-right:1px solid #EBEDEF" style-hover="background:#FAFAF8">
+            <div style="width:19px;height:19px;border:1px solid var(--accent,#6E1220);background:#FFFFFF;display:flex;align-items:center;justify-content:center"><div style="width:5px;height:5px;background:var(--accent,#6E1220)"></div></div>
+            <p style="margin:24px 0 0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#B0B7C0">STAGE 01</p>
+            <h3 style="margin:10px 0 0;font:500 18px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Architecture</h3>
+            <p style="margin:12px 0 0;font:400 14px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Define the block, the interfaces, and what the design must do.</p>
+            <p style="margin:18px 0 0;font:400 9.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#B0B7C0">SPEC · MICROARCH DOC</p>
+          </div>
+          <div style="padding:0 28px;border-right:1px solid #EBEDEF" style-hover="background:#FAFAF8">
+            <div style="width:19px;height:19px;border:1px solid #C9CDD3;background:#FFFFFF"></div>
+            <p style="margin:24px 0 0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#B0B7C0">STAGE 02</p>
+            <h3 style="margin:10px 0 0;font:500 18px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">RTL</h3>
+            <p style="margin:12px 0 0;font:400 14px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Write the hardware description and get it through lint and synthesis.</p>
+            <p style="margin:18px 0 0;font:400 9.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#B0B7C0">SYNTHESIZABLE RTL</p>
+          </div>
+          <div style="padding:0 28px;border-right:1px solid #EBEDEF" style-hover="background:#FAFAF8">
+            <div style="width:19px;height:19px;border:1px solid #C9CDD3;background:#FFFFFF"></div>
+            <p style="margin:24px 0 0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#B0B7C0">STAGE 03</p>
+            <h3 style="margin:10px 0 0;font:500 18px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Verification</h3>
+            <p style="margin:12px 0 0;font:400 14px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Prove it behaves. Testbenches, coverage, and regressions.</p>
+            <p style="margin:18px 0 0;font:400 9.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#B0B7C0">COVERAGE REPORT</p>
+          </div>
+          <div style="padding:0 28px;border-right:1px solid #EBEDEF" style-hover="background:#FAFAF8">
+            <div style="width:19px;height:19px;border:1px solid #C9CDD3;background:#FFFFFF"></div>
+            <p style="margin:24px 0 0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#B0B7C0">STAGE 04</p>
+            <h3 style="margin:10px 0 0;font:500 18px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Physical design</h3>
+            <p style="margin:12px 0 0;font:400 14px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Floorplan, place, route, and close timing and power.</p>
+            <p style="margin:18px 0 0;font:400 9.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#B0B7C0">GDSII · SIGNOFF</p>
+          </div>
+          <div style="padding:0 28px;border-right:1px solid #EBEDEF" style-hover="background:#FAFAF8">
+            <div style="width:19px;height:19px;border:1px solid #C9CDD3;background:#FFFFFF"></div>
+            <p style="margin:24px 0 0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#B0B7C0">STAGE 05</p>
+            <h3 style="margin:10px 0 0;font:500 18px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Tapeout</h3>
+            <p style="margin:12px 0 0;font:400 14px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Final checks, submission to a shuttle, and the wait.</p>
+            <p style="margin:18px 0 0;font:400 9.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#B0B7C0">SHUTTLE — TBD</p>
+          </div>
+          <div style="padding:0 0 0 28px" style-hover="background:#FAFAF8">
+            <div style="width:19px;height:19px;border:1px solid #C9CDD3;background:#FFFFFF"></div>
+            <p style="margin:24px 0 0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#B0B7C0">STAGE 06</p>
+            <h3 style="margin:10px 0 0;font:500 18px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Bring-up</h3>
+            <p style="margin:12px 0 0;font:400 14px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Board, firmware, and the first time the part runs a workload.</p>
+            <p style="margin:18px 0 0;font:400 9.5px/1.6 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#B0B7C0">TEST REPORT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0A1422;padding:140px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px;text-align:center">
+      <h2 style="margin:0;font:500 52px/1.1 Archivo,Helvetica,sans-serif;letter-spacing:-.03em;color:#FFFFFF">Come build the first one.</h2>
+      <p style="max-width:540px;margin:24px auto 0;font:400 16.5px/1.65 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.58)">No prior chip experience required. Bring curiosity, pick a division, and start on something real.</p>
+      <div style="display:flex;gap:14px;justify-content:center;margin-top:38px">
+        <a href="#join" onClick="{{ goJoin }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:#fff;background:var(--accent,#6E1220);padding:14px 26px;text-decoration:none;border:1px solid var(--accent,#6E1220)" style-hover="background:#8E1A2B;border-color:#8E1A2B">Join Rev Silicon</a>
+        <a href="#contact" onClick="{{ goContact }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.86);padding:14px 26px;text-decoration:none;border:1px solid rgba(255,255,255,.22)" style-hover="border-color:rgba(255,255,255,.65);color:#fff">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="About Us">
+  <section style="background:#0A1422;padding:170px 0 110px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <p style="margin:0 0 30px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.42)">About</p>
+      <h1 style="margin:0;max-width:900px;font:500 62px/1.08 Archivo,Helvetica,sans-serif;letter-spacing:-.032em;color:#FFFFFF">A student organization for people who want to design chips.</h1>
+      <p style="max-width:620px;margin:30px 0 0;font:400 17px/1.65 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.58)">Rev Silicon was founded to give Texas A&amp;M students a path into semiconductor engineering that ends at silicon, not at a simulation waveform.</p>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;padding:120px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">01 / What we are</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:900px">
+          <p style="margin:0;font:400 16.5px/1.7 Archivo,Helvetica,sans-serif;color:#4A5361">We are a technical club organized like a small design team. Members join a division, take assignments on the club's project, and review each other's work. Officers run the schedule and the toolchain; faculty advise.</p>
+          <p style="margin:0;font:400 16.5px/1.7 Archivo,Helvetica,sans-serif;color:#4A5361">Meetings mix short teaching sessions with working time. New members start with a guided task inside a division and move to owning a block once they are comfortable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;border-top:1px solid #E3E5E8;padding:120px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">02 / Why it matters</p>
+        <div style="max-width:860px">
+          <h2 style="margin:0 0 48px;font:500 36px/1.18 Archivo,Helvetica,sans-serif;letter-spacing:-.025em;color:#0A1422">Coursework stops early. The industry does not.</h2>
+          <div style="border-top:1px solid #E3E5E8">
+            <div style="display:grid;grid-template-columns:56px 1fr;gap:32px;padding:26px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:var(--accent,#6E1220);letter-spacing:.1em">01</span>
+              <p style="margin:0;font:400 16px/1.65 Archivo,Helvetica,sans-serif;color:#4A5361"><span style="color:#0A1422">The flow is the skill.</span> Writing RTL is a fraction of the job. Verification, timing closure, and signoff are where designs succeed or fail, and they are rarely taught end to end.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:56px 1fr;gap:32px;padding:26px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:var(--accent,#6E1220);letter-spacing:.1em">02</span>
+              <p style="margin:0;font:400 16px/1.65 Archivo,Helvetica,sans-serif;color:#4A5361"><span style="color:#0A1422">Open tools changed access.</span> Open architectures, open EDA, and academic shuttles put a real tapeout within reach of an organized student team.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:56px 1fr;gap:32px;padding:26px 0;border-bottom:1px solid #E3E5E8">
+              <span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:var(--accent,#6E1220);letter-spacing:.1em">03</span>
+              <p style="margin:0;font:400 16px/1.65 Archivo,Helvetica,sans-serif;color:#4A5361"><span style="color:#0A1422">Teams beat individuals.</span> A chip is a group deliverable. Learning to hand off clean work is as valuable as any single technical skill.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;border-top:1px solid #E3E5E8;padding:120px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1">
+        <p style="margin:0 0 18px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">03 / Divisions</p>
+        <h2 style="margin:0 0 56px;font:500 36px/1.18 Archivo,Helvetica,sans-serif;letter-spacing:-.025em;color:#0A1422">Six areas of work.</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #D7DBE0;border-left:1px solid #D7DBE0">
+          <div style="padding:32px 34px 38px;border-right:1px solid #D7DBE0;border-bottom:1px solid #D7DBE0" style-hover="background:#FFFFFF">
+            <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">D-01</p>
+            <h3 style="margin:0 0 10px;font:500 19px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Architecture</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Microarchitecture studies, performance modeling, and the specification the rest of the flow builds from.</p>
+          </div>
+          <div style="padding:32px 34px 38px;border-right:1px solid #D7DBE0;border-bottom:1px solid #D7DBE0" style-hover="background:#FFFFFF">
+            <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">D-02</p>
+            <h3 style="margin:0 0 10px;font:500 19px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">RTL / Digital design</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Implementation in a hardware description language, lint clean, synthesis clean, reviewed.</p>
+          </div>
+          <div style="padding:32px 34px 38px;border-right:1px solid #D7DBE0;border-bottom:1px solid #D7DBE0" style-hover="background:#FFFFFF">
+            <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">D-03</p>
+            <h3 style="margin:0 0 10px;font:500 19px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Verification</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Testbenches, directed and random stimulus, coverage goals, and regression discipline.</p>
+          </div>
+          <div style="padding:32px 34px 38px;border-right:1px solid #D7DBE0;border-bottom:1px solid #D7DBE0" style-hover="background:#FFFFFF">
+            <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">D-04</p>
+            <h3 style="margin:0 0 10px;font:500 19px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Physical design</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Floorplanning, place and route, timing and power closure, and signoff checks.</p>
+          </div>
+          <div style="padding:32px 34px 38px;border-right:1px solid #D7DBE0;border-bottom:1px solid #D7DBE0" style-hover="background:#FFFFFF">
+            <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">D-05</p>
+            <h3 style="margin:0 0 10px;font:500 19px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Tooling / Infrastructure</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Build scripts, continuous integration, environment setup, and keeping the flow reproducible.</p>
+          </div>
+          <div style="padding:32px 34px 38px;border-right:1px solid #D7DBE0;border-bottom:1px solid #D7DBE0" style-hover="background:#FFFFFF">
+            <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--accent,#6E1220)">D-06</p>
+            <h3 style="margin:0 0 10px;font:500 19px/1.25 Archivo,Helvetica,sans-serif;color:#0A1422">Project / Research</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Scope, schedule, documentation, and the reading that keeps the design grounded.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;border-top:1px solid #E3E5E8;padding:120px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">04 / Structure</p>
+        <div style="width:100%;max-width:820px">
+          <h2 style="margin:0 0 56px;font:500 36px/1.18 Archivo,Helvetica,sans-serif;letter-spacing:-.025em;color:#0A1422">How the organization runs.</h2>
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="border:1px solid #0A1422;padding:12px 26px;font:400 13px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#0A1422">FACULTY ADVISOR</div>
+            <div style="width:1px;height:34px;background:#C9CDD3"></div>
+            <div style="border:1px solid var(--accent,#6E1220);padding:12px 26px;font:400 13px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:var(--accent,#6E1220)">OFFICER BOARD</div>
+            <div style="width:1px;height:34px;background:#C9CDD3"></div>
+            <div style="width:100%;height:1px;background:#C9CDD3"></div>
+            <div style="width:100%;display:grid;grid-template-columns:repeat(3,1fr)">
+              <div style="display:flex;flex-direction:column;align-items:center"><div style="width:1px;height:28px;background:#C9CDD3"></div><div style="border:1px solid #C9CDD3;padding:11px 20px;font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4A5361">DIVISION LEADS</div></div>
+              <div style="display:flex;flex-direction:column;align-items:center"><div style="width:1px;height:28px;background:#C9CDD3"></div><div style="border:1px solid #C9CDD3;padding:11px 20px;font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4A5361">PROJECT LEAD</div></div>
+              <div style="display:flex;flex-direction:column;align-items:center"><div style="width:1px;height:28px;background:#C9CDD3"></div><div style="border:1px solid #C9CDD3;padding:11px 20px;font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#4A5361">OUTREACH</div></div>
+            </div>
+            <div style="width:1px;height:34px;background:#C9CDD3"></div>
+            <div style="border:1px dashed #C9CDD3;padding:12px 26px;font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#8A94A3">MEMBERS — ALL MAJORS, ALL YEARS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;border-top:1px solid #E3E5E8;padding:120px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1">
+        <p style="margin:0 0 18px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">05 / Officers</p>
+        <h2 style="margin:0 0 12px;font:500 36px/1.18 Archivo,Helvetica,sans-serif;letter-spacing:-.025em;color:#0A1422">Founding team.</h2>
+        <p style="margin:0 0 56px;font:400 15px/1.6 Archivo,Helvetica,sans-serif;color:#8A94A3">Placeholder entries — names, roles, and photos to be supplied.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+          <div>
+            <div style="aspect-ratio:1/1;background:repeating-linear-gradient(45deg,#E9EAE6 0 7px,#F1F2EE 7px 14px);border:1px solid #D7DBE0;display:flex;align-items:flex-end;padding:12px"><span style="font:400 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#9AA2AC">PORTRAIT 1:1</span></div>
+            <p style="margin:16px 0 4px;font:500 15px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Name Placeholder</p>
+            <p style="margin:0;font:400 12px/1.4 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8A94A3">PRESIDENT</p>
+          </div>
+          <div>
+            <div style="aspect-ratio:1/1;background:repeating-linear-gradient(45deg,#E9EAE6 0 7px,#F1F2EE 7px 14px);border:1px solid #D7DBE0;display:flex;align-items:flex-end;padding:12px"><span style="font:400 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#9AA2AC">PORTRAIT 1:1</span></div>
+            <p style="margin:16px 0 4px;font:500 15px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Name Placeholder</p>
+            <p style="margin:0;font:400 12px/1.4 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8A94A3">VICE PRESIDENT</p>
+          </div>
+          <div>
+            <div style="aspect-ratio:1/1;background:repeating-linear-gradient(45deg,#E9EAE6 0 7px,#F1F2EE 7px 14px);border:1px solid #D7DBE0;display:flex;align-items:flex-end;padding:12px"><span style="font:400 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#9AA2AC">PORTRAIT 1:1</span></div>
+            <p style="margin:16px 0 4px;font:500 15px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Name Placeholder</p>
+            <p style="margin:0;font:400 12px/1.4 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8A94A3">TECHNICAL LEAD</p>
+          </div>
+          <div>
+            <div style="aspect-ratio:1/1;background:repeating-linear-gradient(45deg,#E9EAE6 0 7px,#F1F2EE 7px 14px);border:1px solid #D7DBE0;display:flex;align-items:flex-end;padding:12px"><span style="font:400 9.5px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#9AA2AC">PORTRAIT 1:1</span></div>
+            <p style="margin:16px 0 4px;font:500 15px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Name Placeholder</p>
+            <p style="margin:0;font:400 12px/1.4 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#8A94A3">TREASURER</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;border-top:1px solid #E3E5E8;padding:110px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:70px">
+      <img src="assets/logo-mark.png" alt="Rev Silicon mark" style="width:150px;height:150px;display:block;flex:none">
+      <div style="max-width:640px">
+        <h2 style="margin:0 0 16px;font:500 30px/1.24 Archivo,Helvetica,sans-serif;letter-spacing:-.022em;color:#0A1422">The mark is a package.</h2>
+        <p style="margin:0;font:400 16px/1.7 Archivo,Helvetica,sans-serif;color:#4A5361">Reveille inside a die outline, with traces breaking out to vias on every side. The same geometry — orthogonal routing, circular pads, a square die boundary — runs through this site.</p>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isJoin }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Join">
+  <section style="background:#0A1422;padding:170px 0 110px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <p style="margin:0 0 30px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.42)">Join</p>
+      <h1 style="margin:0;max-width:860px;font:500 62px/1.08 Archivo,Helvetica,sans-serif;letter-spacing:-.032em;color:#FFFFFF">Start where you are.</h1>
+      <p style="max-width:600px;margin:30px 0 0;font:400 17px/1.65 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.58)">Membership is open. You do not need chip design experience — you need to be willing to learn a flow that takes time.</p>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;padding:110px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">01 / Who should join</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #D7DBE0">
+          <div style="padding:26px 30px 0 0;border-right:1px solid #D7DBE0">
+            <h3 style="margin:0 0 10px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Curious beginners</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">You have not written RTL yet. You will start with a guided task and a mentor in one division.</p>
+          </div>
+          <div style="padding:26px 30px 0">
+            <h3 style="margin:0 0 10px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Coursework-ready</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">You have taken digital design or computer architecture and want to apply it to something that ships.</p>
+          </div>
+          <div style="padding:26px 0 0 30px;border-left:1px solid #D7DBE0">
+            <h3 style="margin:0 0 10px;font:500 17px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Adjacent skills</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Software, scripting, PCB, or documentation. Every one of those is load-bearing on a tapeout.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FFFFFF;border-top:1px solid #E3E5E8;padding:110px 0">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start">
+        <p style="margin:6px 0 0;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">02 / What to expect</p>
+        <div style="max-width:820px;border-top:1px solid #E3E5E8">
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid #E3E5E8"><span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">WK 01</span><p style="margin:0;font:400 15.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Info session and division overview. Placeholder date.</p></div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid #E3E5E8"><span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">WK 02</span><p style="margin:0;font:400 15.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Toolchain setup, repository access, and a first guided task.</p></div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid #E3E5E8"><span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">ONGOING</span><p style="margin:0;font:400 15.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Weekly division meeting, a short teaching block, and working time.</p></div>
+          <div style="display:grid;grid-template-columns:70px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid #E3E5E8"><span style="font:400 11px/1.6 'IBM Plex Mono',monospace;color:#B0B7C0;letter-spacing:.1em">TERM</span><p style="margin:0;font:400 15.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">A reviewed contribution with your name on it in the project log.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;border-top:1px solid #E3E5E8;padding:110px 0 130px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:start">
+        <div>
+          <p style="margin:0 0 18px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">03 / Interest form</p>
+          <h2 style="margin:0 0 10px;font:500 34px/1.2 Archivo,Helvetica,sans-serif;letter-spacing:-.025em;color:#0A1422">Tell us you are interested.</h2>
+          <p style="margin:0 0 40px;font:400 15.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Applications open at the start of the term. Until then, this list is how we reach you.</p>
+
+          <sc-if value="{{ joinOpen }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;gap:22px;max-width:560px">
+            <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">Name</span><input type="text" placeholder="Full name" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.4 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none" style-focus="border-bottom-color:#6E1220"></label>
+            <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">University email</span><input type="email" placeholder="you@tamu.edu" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.4 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none" style-focus="border-bottom-color:#6E1220"></label>
+            <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">Major and year</span><input type="text" placeholder="e.g. ECEN, sophomore" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.4 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none" style-focus="border-bottom-color:#6E1220"></label>
+            <div>
+              <span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:14px">Divisions of interest</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <span style="font:400 12.5px/1 Archivo,Helvetica,sans-serif;color:#4A5361;border:1px solid #C9CDD3;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422;color:#0A1422">Architecture</span>
+                <span style="font:400 12.5px/1 Archivo,Helvetica,sans-serif;color:#4A5361;border:1px solid #C9CDD3;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422;color:#0A1422">RTL</span>
+                <span style="font:400 12.5px/1 Archivo,Helvetica,sans-serif;color:#4A5361;border:1px solid #C9CDD3;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422;color:#0A1422">Verification</span>
+                <span style="font:400 12.5px/1 Archivo,Helvetica,sans-serif;color:#4A5361;border:1px solid #C9CDD3;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422;color:#0A1422">Physical design</span>
+                <span style="font:400 12.5px/1 Archivo,Helvetica,sans-serif;color:#4A5361;border:1px solid #C9CDD3;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422;color:#0A1422">Tooling</span>
+                <span style="font:400 12.5px/1 Archivo,Helvetica,sans-serif;color:#4A5361;border:1px solid #C9CDD3;padding:9px 14px;cursor:pointer" style-hover="border-color:#0A1422;color:#0A1422">Not sure yet</span>
+              </div>
+            </div>
+            <button onClick="{{ submitJoin }}" style="justify-self:start;margin-top:10px;font:400 14px/1 Archivo,Helvetica,sans-serif;color:#fff;background:var(--accent,#6E1220);border:1px solid var(--accent,#6E1220);padding:15px 28px;cursor:pointer" style-hover="background:#8E1A2B;border-color:#8E1A2B">Add me to the list</button>
+          </div>
+          </sc-if>
+          <sc-if value="{{ joinSent }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:560px;border:1px solid var(--accent,#6E1220);padding:34px 36px">
+            <p style="margin:0 0 10px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:var(--accent,#6E1220)">RECEIVED</p>
+            <h3 style="margin:0 0 10px;font:500 22px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">You are on the list.</h3>
+            <p style="margin:0;font:400 15px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">We will email the info session details before the term starts. Placeholder confirmation — no data is stored in this mockup.</p>
+          </div>
+          </sc-if>
+        </div>
+
+        <div style="border-left:1px solid #D7DBE0;padding-left:46px">
+          <p style="margin:0 0 26px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3">Meetings</p>
+          <div style="display:grid;gap:0;border-top:1px solid #E3E5E8">
+            <div style="padding:16px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 4px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">WHEN</p><p style="margin:0;font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Weekly — day and time TBD</p></div>
+            <div style="padding:16px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 4px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">WHERE</p><p style="margin:0;font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Campus room TBD</p></div>
+            <div style="padding:16px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 4px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">DUES</p><p style="margin:0;font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">To be determined</p></div>
+            <div style="padding:16px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 4px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">FIRST SESSION</p><p style="margin:0;font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Announced before term start</p></div>
+          </div>
+          <p style="margin:34px 0 0;font:400 13.5px/1.6 Archivo,Helvetica,sans-serif;color:#8A94A3">Questions before signing up? <a href="#contact" onClick="{{ goContact }}" style="color:var(--accent,#6E1220);border-bottom:1px solid rgba(110,18,32,.35)">Contact us</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Contact">
+  <section style="background:#0A1422;padding:170px 0 110px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <p style="margin:0 0 30px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.42)">Contact</p>
+      <h1 style="margin:0;max-width:860px;font:500 62px/1.08 Archivo,Helvetica,sans-serif;letter-spacing:-.032em;color:#FFFFFF">Get in touch.</h1>
+      <p style="max-width:600px;margin:30px 0 0;font:400 17px/1.65 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.58)">For students, faculty, and companies. All addresses below are placeholders for the mockup.</p>
+    </div>
+  </section>
+
+  <section style="background:#F5F5F3;padding:110px 0 130px">
+    <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+      <div data-reveal="1" style="display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:start">
+        <div>
+          <p style="margin:0 0 18px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#8A94A3">Message</p>
+          <sc-if value="{{ contactOpen }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;gap:24px;max-width:580px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">Name</span><input type="text" placeholder="Full name" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.4 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none" style-focus="border-bottom-color:#6E1220"></label>
+              <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">Email</span><input type="email" placeholder="name@example.com" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.4 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none" style-focus="border-bottom-color:#6E1220"></label>
+            </div>
+            <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">I am reaching out as</span>
+              <select style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.4 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none;border-radius:0;appearance:none" style-focus="border-bottom-color:#6E1220">
+                <option>A student</option><option>Faculty or staff</option><option>A company or sponsor</option><option>Other</option>
+              </select>
+            </label>
+            <label style="display:block"><span style="display:block;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3;margin-bottom:10px">Message</span><textarea rows="5" placeholder="What would you like to talk about?" style="width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid #C9CDD3;padding:10px 0;font:400 16px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422;outline:none;resize:vertical" style-focus="border-bottom-color:#6E1220"></textarea></label>
+            <button onClick="{{ submitContact }}" style="justify-self:start;margin-top:6px;font:400 14px/1 Archivo,Helvetica,sans-serif;color:#fff;background:var(--accent,#6E1220);border:1px solid var(--accent,#6E1220);padding:15px 28px;cursor:pointer" style-hover="background:#8E1A2B;border-color:#8E1A2B">Send message</button>
+          </div>
+          </sc-if>
+          <sc-if value="{{ contactSent }}" hint-placeholder-val="{{ false }}">
+          <div style="max-width:580px;border:1px solid var(--accent,#6E1220);padding:34px 36px">
+            <p style="margin:0 0 10px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:var(--accent,#6E1220)">SENT</p>
+            <h3 style="margin:0 0 10px;font:500 22px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Thanks — we will reply soon.</h3>
+            <p style="margin:0;font:400 15px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">Placeholder confirmation state. No message is actually delivered from this mockup.</p>
+          </div>
+          </sc-if>
+        </div>
+
+        <div style="border-left:1px solid #D7DBE0;padding-left:46px">
+          <p style="margin:0 0 26px;font:400 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#8A94A3">Direct</p>
+          <div style="border-top:1px solid #E3E5E8">
+            <div style="padding:18px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 5px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">GENERAL</p><a href="#contact" onClick="{{ noop }}" style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422;border-bottom:1px solid #D7DBE0" style-hover="border-color:#6E1220;color:#6E1220">hello@revsilicon.org</a></div>
+            <div style="padding:18px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 5px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">DISCORD</p><a href="#contact" onClick="{{ noop }}" style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422;border-bottom:1px solid #D7DBE0" style-hover="border-color:#6E1220;color:#6E1220">Invite link — placeholder</a></div>
+            <div style="padding:18px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 5px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">GITHUB</p><a href="#contact" onClick="{{ noop }}" style="font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422;border-bottom:1px solid #D7DBE0" style-hover="border-color:#6E1220;color:#6E1220">github.com/rev-silicon</a></div>
+            <div style="padding:18px 0;border-bottom:1px solid #E3E5E8"><p style="margin:0 0 5px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#B0B7C0">CAMPUS</p><p style="margin:0;font:400 15px/1.5 Archivo,Helvetica,sans-serif;color:#0A1422">Texas A&amp;M University, College Station</p></div>
+          </div>
+          <div style="margin-top:44px;border:1px solid #D7DBE0;padding:28px 30px;background:#FFFFFF">
+            <p style="margin:0 0 12px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:var(--accent,#6E1220)">COMPANIES &amp; SPONSORS</p>
+            <h3 style="margin:0 0 10px;font:500 18px/1.3 Archivo,Helvetica,sans-serif;color:#0A1422">Partnership inquiries</h3>
+            <p style="margin:0 0 16px;font:400 14.5px/1.6 Archivo,Helvetica,sans-serif;color:#4A5361">We are interested in tool access, mentorship, and shuttle support. Tell us what your team works on.</p>
+            <a href="#contact" onClick="{{ noop }}" style="font:400 13.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#0A1422;border-bottom:1px solid #C9CDD3" style-hover="border-color:#6E1220;color:#6E1220">partners@revsilicon.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<footer style="background:#0A1422;border-top:1px solid rgba(255,255,255,.08);padding:80px 0 40px">
+  <div style="max-width:1240px;margin:0 auto;padding:0 40px">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:60px">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="assets/logo-plate.png" alt="Rev Silicon" style="width:38px;height:38px;border-radius:2px;display:block">
+          <span style="font:500 13px/1 Archivo,Helvetica,sans-serif;letter-spacing:.2em;color:#F2F3F5">REV SILICON</span>
+        </div>
+        <p style="margin:22px 0 0;max-width:290px;font:400 14px/1.65 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.44)">A student semiconductor organization at Texas A&amp;M University. From architecture to tapeout.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.34)">SITE</p>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <a href="#home" onClick="{{ goHome }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">Home</a>
+          <a href="#about" onClick="{{ goAbout }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">About Us</a>
+          <a href="#join" onClick="{{ goJoin }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">Join</a>
+          <a href="#contact" onClick="{{ goContact }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">Contact</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.34)">PROJECT</p>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <a href="#project" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">Accelerator I</a>
+          <span style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.34)">Project log — soon</span>
+          <span style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.34)">Documentation — soon</span>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 18px;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.34)">ELSEWHERE</p>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <a href="#contact" onClick="{{ noop }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">GitHub</a>
+          <a href="#contact" onClick="{{ noop }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">Discord</a>
+          <a href="#contact" onClick="{{ noop }}" style="font:400 14px/1 Archivo,Helvetica,sans-serif;color:rgba(255,255,255,.72);text-decoration:none" style-hover="color:#fff">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:64px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between">
+      <p style="margin:0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.32)">© 2026 REV SILICON · TEXAS A&amp;M UNIVERSITY</p>
+      <p style="margin:0;font:400 10px/1 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.32)">DESIGN MOCKUP — PLACEHOLDER CONTENT</p>
+    </div>
+  </div>
+</footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#6E1220&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#6E1220&quot;,&quot;#500000&quot;,&quot;#8E1A2B&quot;,&quot;#16294A&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;idleRotation&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Centerpiece&quot;},&quot;annotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Centerpiece&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', ann: true, contactSent: false, joinSent: false };
+
+  rot = { x: 58, z: -28 };
+  target = { x: 58, z: -28 };
+  par = { x: 0, y: 0 };
+  raf = null;
+  dragging = false;
+
+  nav(p, e) {
+    if (e && e.preventDefault) e.preventDefault();
+    this.setState({ page: p });
+    try { window.scrollTo(0, 0); } catch (err) {}
+  }
+
+  setStage = (el) => {
+    this.stageEl = el;
+    if (el) {
+      this.fit();
+      if (!this.fitBound) { this.fitBound = () => this.fit(); window.addEventListener('resize', this.fitBound); }
+    }
+  };
+
+  fit() {
+    const el = this.stageEl;
+    if (!el || !el.firstElementChild) return;
+    const s = Math.max(0.42, Math.min(1, el.clientWidth / 1170));
+    el.firstElementChild.style.transform = 'scale(' + s + ')';
+    el.style.height = Math.round(560 * s) + 'px';
+  }
+
+  setScene = (el) => {
+    this.sceneEl = el;
+    if (el && !this.raf) {
+      try { this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { this.reduced = false; }
+      this.tick();
+    } else if (!el && this.raf) {
+      cancelAnimationFrame(this.raf);
+      this.raf = null;
+    }
+  };
+
+  tick = () => {
+    this.raf = requestAnimationFrame(this.tick);
+    const el = this.sceneEl;
+    if (!el) return;
+    const idle = (this.props.idleRotation ?? true) && !this.dragging && !this.reduced;
+    if (idle) this.target.z += 0.018;
+    this.rot.x += (this.target.x + this.par.y - this.rot.x) * 0.07;
+    this.rot.z += (this.target.z + this.par.x - this.rot.z) * 0.07;
+    el.style.transform = 'rotateX(' + this.rot.x.toFixed(3) + 'deg) rotateZ(' + this.rot.z.toFixed(3) + 'deg)';
+  };
+
+  componentDidMount() { this.reveal(); this.fit(); }
+  componentDidUpdate() { this.reveal(); this.fit(); }
+  componentWillUnmount() { if (this.raf) cancelAnimationFrame(this.raf); if (this.io) this.io.disconnect(); }
+
+  reveal() {
+    if (typeof window === 'undefined') return;
+    if (!this.seen) this.seen = new WeakSet();
+    if (!this.io) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.style.opacity = '1';
+            en.target.style.transform = 'none';
+            this.io.unobserve(en.target);
+          }
+        });
+      }, { rootMargin: '260px 0px 260px 0px' });
+    }
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (this.seen.has(el)) return;
+      this.seen.add(el);
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.95) return;
+      el.style.transition = 'opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1)';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      this.io.observe(el);
+    });
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    return {
+      accent: this.props.accent ?? '#6E1220',
+      isHome: p === 'home',
+      isAbout: p === 'about',
+      isJoin: p === 'join',
+      isContact: p === 'contact',
+      goHome: (e) => this.nav('home', e),
+      goAbout: (e) => this.nav('about', e),
+      goJoin: (e) => this.nav('join', e),
+      goContact: (e) => this.nav('contact', e),
+      noop: (e) => { if (e && e.preventDefault) e.preventDefault(); },
+      setScene: this.setScene,
+      setStage: this.setStage,
+      annOpacity: this.state.ann ? 1 : 0,
+      toggleAnn: () => this.setState((s) => ({ ann: !s.ann })),
+      reset: () => {
+        this.target.x = 58;
+        this.target.z = Math.round((this.target.z + 28) / 360) * 360 - 28;
+      },
+      onDown: (e) => {
+        this.dragging = true;
+        this.px = e.clientX; this.py = e.clientY;
+        if (e.currentTarget.setPointerCapture) { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {} }
+      },
+      onDrag: (e) => {
+        if (!this.dragging) return;
+        this.target.z += (e.clientX - this.px) * 0.3;
+        this.target.x = Math.max(22, Math.min(86, this.target.x - (e.clientY - this.py) * 0.25));
+        this.px = e.clientX; this.py = e.clientY;
+      },
+      onUp: () => { this.dragging = false; },
+      onHover: (e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        this.par.x = ((e.clientX - r.left) / r.width - 0.5) * 7;
+        this.par.y = ((e.clientY - r.top) / r.height - 0.5) * -5;
+      },
+      onLeave: () => { this.par.x = 0; this.par.y = 0; },
+      clusters: Array.from({ length: 16 }, (_, i) => i),
+      banks: Array.from({ length: 10 }, (_, i) => i),
+      fingers: Array.from({ length: 26 }, (_, i) => i),
+      joinOpen: !this.state.joinSent,
+      joinSent: this.state.joinSent,
+      submitJoin: () => this.setState({ joinSent: true }),
+      contactOpen: !this.state.contactSent,
+      contactSent: this.state.contactSent,
+      submitContact: () => this.setState({ contactSent: true })
+    };
+  }
+}
+</script>
+</body>
+</html>
