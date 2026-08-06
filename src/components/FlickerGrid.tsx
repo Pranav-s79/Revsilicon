@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { logoMarkUrl } from '../assets';
 
 export function FlickerGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -11,7 +12,7 @@ export function FlickerGrid() {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const logo = new Image();
-    logo.src = '/assets/logo-mark.png';
+    logo.src = logoMarkUrl;
     let frame = 0;
     let last = 0;
 

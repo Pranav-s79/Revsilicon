@@ -1,4 +1,5 @@
 import { Reveal } from '../components/Reveal';
+import { logoMarkUrl } from '../assets';
 import { site } from '../data/site';
 import { Link } from '../router';
 
@@ -85,7 +86,7 @@ export default function AboutPage() {
               <Reveal key={role} delay={index * 70} className="officer-card">
                 <div className="portrait-placeholder" aria-label={`${role} portrait to be published`}>
                   <span>{String(index + 1).padStart(2, '0')}</span>
-                  <img src="/assets/logo-mark.png" alt="" />
+                  <img src={logoMarkUrl} alt="" />
                 </div>
                 <p>{role}</p>
                 <span>ROSTER FORTHCOMING</span>

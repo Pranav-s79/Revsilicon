@@ -3,6 +3,7 @@ import { FlickerGrid } from '../components/FlickerGrid';
 import { MooreTimeline } from '../components/MooreTimeline';
 import { Reveal } from '../components/Reveal';
 import { SignalProcess } from '../components/SignalProcess';
+import { logoPlateUrl } from '../assets';
 import { site } from '../data/site';
 import { Link } from '../router';
 
@@ -110,7 +111,7 @@ export function HomePage() {
         <div className="cta-glow" aria-hidden="true" />
         <Reveal className="join-cta-content">
           <div className="cta-logo-tile">
-            <img src="/assets/logo-plate.png" alt="Rev Silicon logo" className="cta-mark" />
+            <img src={logoPlateUrl} alt="Rev Silicon logo" className="cta-mark" />
           </div>
           <p className="micro-label">THE NEXT SIGNAL STARTS HERE</p>
           <h2 id="join-cta-heading">Build silicon with us.</h2>

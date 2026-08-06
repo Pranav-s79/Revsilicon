@@ -1,4 +1,5 @@
 import { type PropsWithChildren, useEffect, useId, useState } from 'react';
+import { logoPlateUrl } from '../assets';
 import { site } from '../data/site';
 import { Link, NavLink, useLocation } from '../router';
 
@@ -24,7 +25,7 @@ function Header() {
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="Rev Silicon home" onClick={() => setOpen(false)}>
           <span className="brand-mark-wrap">
-            <img src="/assets/logo-plate.png" alt="" className="brand-mark" />
+            <img src={logoPlateUrl} alt="" className="brand-mark" />
           </span>
           <span className="brand-name">REV SILICON</span>
         </Link>
@@ -59,7 +60,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <span className="footer-logo-tile"><img src="/assets/logo-plate.png" alt="" /></span>
+          <span className="footer-logo-tile"><img src={logoPlateUrl} alt="" /></span>
           <div>
             <p className="footer-wordmark">REV SILICON</p>
             <p>{site.shortDescription}</p>

@@ -9,6 +9,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { appBasePath } from './paths';
 
 type RouterContextValue = {
   readonly pathname: string;
@@ -17,31 +18,48 @@ type RouterContextValue = {
 
 const RouterContext = createContext<RouterContextValue | null>(null);
 const validPaths = new Set(['/', '/about', '/join', '/contact']);
+const appBasePathWithoutTrailingSlash = appBasePath.replace(/\/$/, '');
 
 function normalizePath(pathname: string) {
   const trimmed = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
   return validPaths.has(trimmed) ? trimmed : '/';
 }
 
+function stripBasePath(pathname: string) {
+  if (appBasePath === '/') return pathname;
+  if (pathname === appBasePathWithoutTrailingSlash) return '/';
+  if (!pathname.startsWith(appBasePath)) return '/';
+  return `/${pathname.slice(appBasePath.length).replace(/^\/+/, '')}`;
+}
+
+function hrefForPath(pathname: string) {
+  const normalized = normalizePath(pathname);
+  if (normalized === '/') return appBasePath;
+  return `${appBasePath}${normalized.slice(1)}/`;
+}
+
 export function RouterProvider({ children }: PropsWithChildren) {
-  const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname));
+  const [pathname, setPathname] = useState(() => normalizePath(stripBasePath(window.location.pathname)));
 
   const navigate = useCallback((to: string) => {
     const nextPath = normalizePath(to);
-    if (nextPath === window.location.pathname) return;
-    window.history.pushState(null, '', nextPath);
+    const href = hrefForPath(nextPath);
+    if (href === window.location.pathname) return;
+    window.history.pushState(null, '', href);
     setPathname(nextPath);
   }, []);
 
   useEffect(() => {
-    const handlePopState = () => setPathname(normalizePath(window.location.pathname));
+    const handlePopState = () => setPathname(normalizePath(stripBasePath(window.location.pathname)));
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   useEffect(() => {
-    if (!validPaths.has(window.location.pathname)) {
-      window.history.replaceState(null, '', '/');
+    const normalized = normalizePath(stripBasePath(window.location.pathname));
+    const href = hrefForPath(normalized);
+    if (href !== window.location.pathname) {
+      window.history.replaceState(null, '', href);
     }
   }, []);
 
@@ -70,7 +88,7 @@ export function Link({ to, onClick, children, ...props }: LinkProps) {
     router.navigate(to);
   };
 
-  return <a href={to} onClick={handleClick} {...props}>{children}</a>;
+  return <a href={hrefForPath(to)} onClick={handleClick} {...props}>{children}</a>;
 }
 
 export function NavLink({ to, className = '', ...props }: LinkProps) {
