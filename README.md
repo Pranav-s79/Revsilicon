@@ -31,7 +31,7 @@ The production output is written to `dist/`. The host must serve `index.html` as
 
 - `src/data/site.ts` — all editable copy: navigation, mission, values, process stages, teams, event calendar, project schedule, and the org chart
 - `src/pages/` — Home, Team (`/about`), Projects, Join, and Sponsor routes
-- `src/components/HeroReveille.tsx` — animated home hero with a smooth multi-pose Reveille leap
+- `src/components/HeroReveille.tsx` — animated home hero; an eight-cell Reveille run cycle cross-dissolved into a continuous gait
 - `src/components/EventChart.tsx` — club calendar plotted as a rising chart with click-to-open detail
 - `src/logoMark.ts` — crop box that reduces the logo plate to Reveille alone
 - `src/components/ProcessFlow.tsx` — the six-stage "concept to silicon" diagram set
