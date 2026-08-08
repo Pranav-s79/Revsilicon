@@ -1,6 +1,6 @@
 import { type PropsWithChildren, useEffect, useId, useState } from 'react';
-import { logoPlateUrl } from '../assets';
-import { site } from '../data/site';
+import { logoMarkUrl } from '../assets';
+import { contact, site } from '../data/site';
 import { Link, NavLink, useLocation } from '../router';
 
 function Header() {
@@ -25,7 +25,7 @@ function Header() {
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="Rev Silicon home" onClick={() => setOpen(false)}>
           <span className="brand-mark-wrap">
-            <img src={logoPlateUrl} alt="" className="brand-mark" />
+            <img src={logoMarkUrl} alt="" className="brand-mark" />
           </span>
           <span className="brand-name">REV SILICON</span>
         </Link>
@@ -48,37 +48,51 @@ function Header() {
               {item.label}
             </NavLink>
           ))}
-          <Link className="nav-cta" to="/join" onClick={() => setOpen(false)}>Join the team <span aria-hidden="true">↗</span></Link>
         </nav>
       </div>
     </header>
   );
 }
 
+function SocialLinks() {
+  return (
+    <div className="social-links">
+      <a href={contact.instagram.url} target="_blank" rel="noreferrer noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4.1" />
+          <circle className="social-dot" cx="17.4" cy="6.6" r="1.15" />
+        </svg>
+        <span>{contact.instagram.handle}</span>
+      </a>
+      <a href={contact.linkedin.url} target="_blank" rel="noreferrer noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="3" y="3" width="18" height="18" rx="3" />
+          <circle className="social-dot" cx="7.6" cy="7.4" r="1.15" />
+          <path d="M7.6 10.4v7M11.6 17.4v-7M11.6 13.3c0-1.8 1.1-2.9 2.5-2.9s2.4 1 2.4 3v4" />
+        </svg>
+        <span>{contact.linkedin.handle}</span>
+      </a>
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container footer-grid">
-        <div className="footer-brand">
-          <span className="footer-logo-tile"><img src={logoPlateUrl} alt="" /></span>
-          <div>
-            <p className="footer-wordmark">REV SILICON</p>
-            <p>{site.shortDescription}</p>
-          </div>
-        </div>
+      <div className="container footer-inner">
         <nav className="footer-nav" aria-label="Footer navigation">
-          <p className="micro-label">Navigate</p>
           {site.nav.map((item) => <Link key={item.to} to={item.to}>{item.label}</Link>)}
         </nav>
+
         <div className="footer-contact">
-          <p className="micro-label">Texas A&amp;M University</p>
-          <p>College Station, Texas</p>
-          <p>Student-led. Faculty-advised.</p>
+          <a className="footer-email" href={`mailto:${contact.email}`}>{contact.email}</a>
+          <SocialLinks />
         </div>
       </div>
       <div className="container footer-bottom">
         <p>© 2026 REV SILICON</p>
-        <p>FROM ARCHITECTURE TO TAPEOUT</p>
+        <p>TEXAS A&amp;M UNIVERSITY</p>
       </div>
     </footer>
   );

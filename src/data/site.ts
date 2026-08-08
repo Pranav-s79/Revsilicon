@@ -3,72 +3,193 @@ export type NavItem = {
   readonly to: string;
 };
 
-export type Milestone = {
-  readonly name: string;
-  readonly shortName: string;
-  readonly year: number;
-  readonly transistors: number;
-  readonly displayCount: string;
-};
-
 export type ProcessStage = {
   readonly title: string;
-  readonly description: string;
-  readonly output: string;
-  readonly handoff: string;
+  readonly summary: string;
 };
 
-export type TechnicalArea = {
+export type Team = {
   readonly title: string;
-  readonly description: string;
+  readonly overview: string;
+  readonly skills: readonly string[];
 };
+
+/** Club moments plotted left to right. `arc` only shapes the visual curve. */
+export type TimelineEvent = {
+  readonly id: string;
+  readonly label: string;
+  readonly title: string;
+  readonly phase: string;
+  readonly arc: number;
+  readonly side: 'above' | 'below';
+  readonly kind: 'milestone' | 'event' | 'workshop';
+  readonly detail: string;
+};
+
+export type ProjectPhase = {
+  readonly window: string;
+  readonly title: string;
+  readonly detail: string;
+};
+
+export type Value = {
+  readonly title: string;
+  readonly detail: string;
+};
+
+export type Officer = {
+  readonly role: string;
+  readonly focus: string;
+};
+
+/**
+ * Placeholder destinations. Replace these three before launch. Everything else
+ * on the site reads from here.
+ */
+export const contact = {
+  email: 'revsilicon@tamu.edu',
+  instagram: { handle: '@revsilicon', url: 'https://www.instagram.com/revsilicon' },
+  linkedin: { handle: '/revsilicon', url: 'https://www.linkedin.com/company/revsilicon' },
+  resources: 'https://github.com/revsilicon',
+} as const;
 
 export const site = {
-  name: 'Rev Silicon',
-  shortDescription:
-    'A Texas A&M student organization learning the complete path from chip architecture to fabricated hardware.',
   nav: [
     { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
+    { label: 'Team', to: '/about' },
+    { label: 'Projects', to: '/projects' },
     { label: 'Join', to: '/join' },
-    { label: 'Contact', to: '/contact' },
+    { label: 'Sponsor', to: '/sponsor' },
   ] satisfies readonly NavItem[],
-  project: {
-    eyebrow: 'Student accelerator project',
-    title: 'An open RISC-V GPU accelerator.',
-    description:
-      'A collaborative platform for learning architecture, RTL, verification, and physical implementation through the open-source Vortex ecosystem.',
-    attributes: ['Vortex-based', 'Student-designed', 'Built toward tapeout'] as const,
-  },
-  milestones: [
-    { name: 'Intel 4004', shortName: '4004', year: 1971, transistors: 2_300, displayCount: '2.3 K' },
-    { name: 'Intel 8086', shortName: '8086', year: 1978, transistors: 29_000, displayCount: '29 K' },
-    { name: 'Intel Pentium', shortName: 'Pentium', year: 1993, transistors: 3_100_000, displayCount: '3.1 M' },
-    { name: 'NVIDIA GeForce 256', shortName: 'GeForce 256', year: 1999, transistors: 23_000_000, displayCount: '23 M' },
-    { name: 'NVIDIA Tesla V100', shortName: 'Tesla V100', year: 2017, transistors: 21_100_000_000, displayCount: '21.1 B' },
-    { name: 'NVIDIA H100', shortName: 'H100', year: 2022, transistors: 80_000_000_000, displayCount: '80 B' },
-  ] satisfies readonly Milestone[],
+
+  values: [
+    { title: 'Learn by doing.', detail: 'Turn concepts into working hardware.' },
+    { title: 'Build together.', detail: 'Grow faster with a team beside you.' },
+    { title: 'Leave ready.', detail: 'Graduate with experience that matters.' },
+  ] satisfies readonly Value[],
+
+  /**
+   * The industry-standard digital ASIC flow, in order. Each stage feeds the next
+   * and every one of them is verified before it hands off.
+   */
   process: [
-    { title: 'Architecture', description: 'Define the system, its behavior, and every interface.', output: 'Architecture specification', handoff: 'Interfaces ready for RTL' },
-    { title: 'RTL', description: 'Translate the specification into synthesizable hardware.', output: 'Reviewed RTL', handoff: 'Design ready for verification' },
-    { title: 'Verification', description: 'Exercise the design, close coverage, and prove expected behavior.', output: 'Verification evidence', handoff: 'Behavior ready for implementation' },
-    { title: 'Physical design', description: 'Floorplan, place, route, and close timing and power.', output: 'Signoff-ready layout', handoff: 'Layout ready for final checks' },
-    { title: 'Tapeout', description: 'Complete signoff and prepare the final GDSII submission.', output: 'Fabrication handoff', handoff: 'Design enters the shuttle flow' },
-    { title: 'Bring-up', description: 'Test first silicon, validate interfaces, and run workloads.', output: 'Characterized hardware', handoff: 'Results feed the next revision' },
+    {
+      title: 'Architecture',
+      summary: 'Define the instruction set, block boundaries, memory hierarchy, and interfaces before RTL begins.',
+    },
+    {
+      title: 'RTL design',
+      summary: 'Translate the architecture into synthesizable SystemVerilog for datapaths, control logic, and block interfaces.',
+    },
+    {
+      title: 'Verification',
+      summary: 'Prove the RTL matches the specification with testbenches, assertions, and coverage.',
+    },
+    {
+      title: 'Synthesis',
+      summary: 'Map RTL to a gate-level netlist, then evaluate timing, area, and power.',
+    },
+    {
+      title: 'Physical design',
+      summary: 'Turn the netlist into a routed layout with a floorplan, power grid, clock tree, and metal routing.',
+    },
+    {
+      title: 'Signoff & tapeout',
+      summary: 'Run timing and physical checks, then prepare the final GDSII for fabrication.',
+    },
   ] satisfies readonly ProcessStage[],
-  areas: [
-    { title: 'Architecture', description: 'Microarchitecture studies and the specification the design flow builds from.' },
-    { title: 'RTL / Digital design', description: 'Synthesizable HDL, review discipline, linting, and synthesis.' },
-    { title: 'Verification', description: 'Testbenches, stimulus, coverage goals, and regression practice.' },
-    { title: 'Physical design', description: 'Floorplanning, place and route, timing, and power closure.' },
-    { title: 'Tooling / Infrastructure', description: 'Build scripts, CI, and reproducible engineering workflows.' },
-    { title: 'Project / Research', description: 'Scope, schedule, documentation, and the technical reading behind it.' },
-  ] satisfies readonly TechnicalArea[],
-  officerRoles: ['President', 'Vice president', 'Technical lead', 'Operations'] as const,
-  interestAreas: ['Architecture', 'RTL', 'Verification', 'Physical design', 'Tooling', 'Project / research'] as const,
-  externalLinks: {
-    emailLabel: 'Club email — publishing soon',
-    githubLabel: 'GitHub — publishing soon',
-    communityLabel: 'Community link — publishing soon',
+
+  teams: [
+    {
+      title: 'RTL design',
+      overview:
+        'Write the hardware. You take a block from the architecture spec and turn it into synthesizable SystemVerilog that meets timing.',
+      skills: ['SystemVerilog', 'Digital logic', 'Pipelining & FSMs', 'Git review flow'],
+    },
+    {
+      title: 'Verification',
+      overview:
+        'Break the hardware on purpose. You build testbenches and coverage models that prove a block does exactly what the spec says.',
+      skills: ['UVM / cocotb', 'Python', 'Assertions & coverage', 'Debug with waveforms'],
+    },
+    {
+      title: 'Physical design',
+      overview:
+        'Turn logic into layout. You floorplan, place, route, and close timing on a block using the open-source PDK flow.',
+      skills: ['OpenROAD / OpenLane', 'Static timing analysis', 'Floorplanning', 'Linux & Tcl'],
+    },
+    {
+      title: 'AI inference',
+      overview:
+        'Decide what the silicon is for. You profile ML workloads and shape the accelerator around them: datapath width, memory, and dataflow.',
+      skills: ['PyTorch', 'Computer architecture', 'Quantization', 'C++ / Python modeling'],
+    },
+  ] satisfies readonly Team[],
+
+  /** The recurring rhythm of the club, not a dated event schedule. */
+  events: [
+    {
+      id: 'kickoff', label: 'Kickoff', title: 'Meet the teams', phase: 'Start',
+      arc: 0.7, side: 'below', kind: 'event',
+      detail: 'Get oriented, meet the team, and find the part of chip design you want to explore.',
+    },
+    {
+      id: 'workshops', label: 'Workshops', title: 'Learn the fundamentals', phase: 'Learn',
+      arc: 0.45, side: 'above', kind: 'workshop',
+      detail: 'Build confidence with digital logic, hardware description, simulation, and team workflows.',
+    },
+    {
+      id: 'build-nights', label: 'Build nights', title: 'Make it real', phase: 'Build',
+      arc: 0.58, side: 'below', kind: 'event',
+      detail: 'Work alongside other members, turn ideas into RTL, and learn through iteration.',
+    },
+    {
+      id: 'speakers', label: 'Industry talks', title: 'Meet semiconductor engineers', phase: 'Connect',
+      arc: 0.3, side: 'above', kind: 'event',
+      detail: 'Hear how engineers approach the work, the industry, and the path from school to silicon.',
+    },
+    {
+      id: 'labs', label: 'Open labs', title: 'Test and debug together', phase: 'Test',
+      arc: 0.43, side: 'below', kind: 'workshop',
+      detail: 'Read waveforms, find bugs, and sharpen your engineering instincts with the team.',
+    },
+    {
+      id: 'showcase', label: 'Showcase', title: 'Share what we built', phase: 'Share',
+      arc: 0.22, side: 'above', kind: 'milestone',
+      detail: 'Bring the work together, share what changed, and set the direction for the next build.',
+    },
+  ] satisfies readonly TimelineEvent[],
+
+  /** Design-flow schedule for the accelerator itself. */
+  projectPhases: [
+    { window: 'Fall 2026', title: 'Architecture', detail: 'ISA subset, block diagram, and interface contracts frozen.' },
+    { window: 'Spring 2027', title: 'RTL design', detail: 'Core, scheduler, and memory path written to spec.' },
+    { window: 'Spring 2027', title: 'Verification', detail: 'Block-level testbenches and coverage closure.' },
+    { window: 'Summer 2027', title: 'Synthesis', detail: 'Gate-level netlist mapped to the open standard-cell library.' },
+    { window: 'Summer 2027', title: 'Physical design', detail: 'Floorplan, place, route, and timing closure.' },
+    { window: 'Fall 2027', title: 'Signoff & tapeout', detail: 'DRC, LVS, STA, and GDSII submission.' },
+  ] satisfies readonly ProjectPhase[],
+
+  project: {
+    eyebrow: 'Project 01',
+    title: 'An open RISC-V accelerator.',
+    description:
+      'Our first chip is a small RISC-V GPGPU built on the open-source Vortex ecosystem.',
+    attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
   },
+
+  /** Student-run. Executive board over one technical org and one operations org. */
+  org: {
+    branches: [
+      { title: 'Architecture', teams: ['RTL design', 'Verification', 'Physical design', 'AI inference'] },
+      { title: 'Operations', teams: ['Sponsorship', 'Outreach', 'Events & media'] },
+    ],
+  },
+
+  officers: [
+    { role: 'President', focus: 'Strategy, partnerships, and club direction.' },
+    { role: 'Vice president', focus: 'Team coordination and day-to-day execution.' },
+    { role: 'Architecture lead', focus: 'Technical roadmap, standards, and integration.' },
+    { role: 'Operations lead', focus: 'Events, outreach, and member experience.' },
+  ] satisfies readonly Officer[],
 } as const;

@@ -284,7 +284,7 @@ function createContactShadow() {
 function StaticAccelerator() {
   return (
     <div className="accelerator-static" aria-hidden="true">
-      <div className="static-board previous-model">
+      <div className="static-board">
         <div className="static-fan fan-left" />
         <div className="static-die"><span /><span /><span /><span /></div>
         <div className="static-fan fan-right" />
@@ -396,18 +396,25 @@ export function AcceleratorScene() {
       stateRef.current.pointerX = 0;
       stateRef.current.pointerY = 0;
     };
+    /** Idle drift is paused briefly after a reset so the snap-back is visible. */
+    let driftResumesAt = 0;
     const reset = () => {
-      stateRef.current.targetX = 0.3;
-      stateRef.current.targetY = Math.round((stateRef.current.targetY + 0.62) / (Math.PI * 2)) * Math.PI * 2 - 0.62;
+      const state = stateRef.current;
+      state.dragging = false;
+      state.pointerX = 0;
+      state.pointerY = 0;
+      state.targetX = 0.3;
+      state.targetY = Math.round((state.targetY + 0.62) / (Math.PI * 2)) * Math.PI * 2 - 0.62;
+      driftResumesAt = performance.now() + 1100;
     };
     resetRef.current = reset;
 
     let frame = 0;
     let visible = true;
     const fanRotors = accelerator.getObjectsByProperty('name', 'fan-rotor');
-    const render = () => {
+    const render = (now: number) => {
       if (visible) {
-        if (!stateRef.current.dragging && !reduceMotion) stateRef.current.targetY += 0.0014;
+        if (!stateRef.current.dragging && !reduceMotion && now >= driftResumesAt) stateRef.current.targetY += 0.0014;
         accelerator.rotation.y += (stateRef.current.targetY + stateRef.current.pointerX - accelerator.rotation.y) * 0.06;
         accelerator.rotation.x += (stateRef.current.targetX + stateRef.current.pointerY - accelerator.rotation.x) * 0.06;
         const orientation = Math.pow(Math.abs(Math.sin(accelerator.rotation.y)), 2.4);
@@ -435,7 +442,7 @@ export function AcceleratorScene() {
     canvas.addEventListener('pointerleave', onPointerLeave);
     canvas.addEventListener('dblclick', reset);
     resize();
-    render();
+    render(performance.now());
 
     return () => {
       cancelAnimationFrame(frame);

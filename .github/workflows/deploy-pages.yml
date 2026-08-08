@@ -40,10 +40,11 @@ jobs:
 
       - name: Create route entry files
         run: |
-          mkdir -p dist/about dist/join dist/contact
+          mkdir -p dist/about dist/projects dist/join dist/sponsor
           cp dist/index.html dist/about/index.html
+          cp dist/index.html dist/projects/index.html
           cp dist/index.html dist/join/index.html
-          cp dist/index.html dist/contact/index.html
+          cp dist/index.html dist/sponsor/index.html
           cp dist/index.html dist/404.html
           touch dist/.nojekyll
 

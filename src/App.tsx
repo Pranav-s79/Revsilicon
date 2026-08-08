@@ -4,8 +4,9 @@ import { HomePage } from './pages/HomePage';
 import { useLocation } from './router';
 
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const JoinPage = lazy(() => import('./pages/JoinPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
+const SponsorPage = lazy(() => import('./pages/SponsorPage'));
 
 function RouteFallback() {
   return <main className="route-fallback" aria-label="Loading page" />;
@@ -22,11 +23,14 @@ export default function App() {
     case '/about':
       page = <AboutPage />;
       break;
+    case '/projects':
+      page = <ProjectsPage />;
+      break;
     case '/join':
       page = <JoinPage />;
       break;
-    case '/contact':
-      page = <ContactPage />;
+    case '/sponsor':
+      page = <SponsorPage />;
       break;
     default:
       page = <HomePage />;

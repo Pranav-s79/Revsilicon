@@ -17,7 +17,7 @@ type RouterContextValue = {
 };
 
 const RouterContext = createContext<RouterContextValue | null>(null);
-const validPaths = new Set(['/', '/about', '/join', '/contact']);
+const validPaths = new Set(['/', '/about', '/projects', '/join', '/sponsor']);
 const appBasePathWithoutTrailingSlash = appBasePath.replace(/\/$/, '');
 
 function normalizePath(pathname: string) {

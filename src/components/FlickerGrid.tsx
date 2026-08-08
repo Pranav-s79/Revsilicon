@@ -46,11 +46,11 @@ export function FlickerGrid() {
       }
 
       if (logo.complete && logo.naturalWidth > 0) {
-        const logoSize = Math.min(width * 0.42, height * 0.78, 520);
+        const logoSize = Math.min(width * 0.54, height * 0.9, 620);
         const left = width / 2 - logoSize / 2;
         const top = height / 2 - logoSize / 2;
         context.save();
-        context.globalAlpha = 0.18 + (reduceMotion ? 0.02 : (Math.sin(cycle * 1.4) + 1) * 0.025);
+        context.globalAlpha = 0.36 + (reduceMotion ? 0.03 : (Math.sin(cycle * 1.4) + 1) * 0.04);
         context.drawImage(logo, left, top, logoSize, logoSize);
         context.globalCompositeOperation = 'source-atop';
         context.fillStyle = '#f1eee8';
@@ -58,7 +58,7 @@ export function FlickerGrid() {
         context.restore();
 
         context.save();
-        context.globalAlpha = 0.08;
+        context.globalAlpha = 0.16;
         context.drawImage(logo, left, top, logoSize, logoSize);
         context.restore();
       }
@@ -74,13 +74,25 @@ export function FlickerGrid() {
 
     const onLogoLoad = () => draw(performance.now());
     logo.addEventListener('load', onLogoLoad, { once: true });
-    loop(performance.now());
+    draw(performance.now());
     const resizeObserver = new ResizeObserver(() => draw(performance.now()));
     resizeObserver.observe(canvas);
 
+    /** The CTA sits far below the fold, so only paint while it is on screen. */
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        if (!frame && !reduceMotion) frame = requestAnimationFrame(loop);
+      } else if (frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      }
+    });
+    visibility.observe(canvas);
+
     return () => {
-      cancelAnimationFrame(frame);
+      if (frame) cancelAnimationFrame(frame);
       resizeObserver.disconnect();
+      visibility.disconnect();
       logo.removeEventListener('load', onLogoLoad);
     };
   }, []);
