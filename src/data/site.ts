@@ -63,9 +63,9 @@ export const site = {
   ] satisfies readonly NavItem[],
 
   values: [
-    { title: 'Hands on the tools.', detail: 'You write the RTL, run the simulations, and close the timing.' },
-    { title: 'One team, one chip.', detail: 'Four specialties working on a single design, not four side projects.' },
-    { title: 'Proof, not theory.', detail: 'Graduate with design work you can put in front of an employer.' },
+    { title: 'Start from zero.', detail: 'We teach the flow from logic gates up. No prerequisites.' },
+    { title: 'Your block, our chip.', detail: 'Four teams share one design. Your piece has to work with theirs.' },
+    { title: 'Leave with silicon.', detail: 'Graduate having carried a design all the way to fabrication.' },
   ] satisfies readonly Value[],
 
   /**
