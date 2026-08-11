@@ -4,7 +4,7 @@ import { contact } from '../data/site';
 const support = [
   {
     title: 'Access',
-    detail: 'Fund the software, compute, lab hardware, and fabrication runs a student chip requires.',
+    detail: 'Fund the software, compute, lab hardware, and fabrication runs that a student chip requires.',
   },
   {
     title: 'Experience',

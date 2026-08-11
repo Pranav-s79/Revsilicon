@@ -136,7 +136,7 @@ export const site = {
     {
       id: 'workshops', label: 'Workshops', title: 'Learn the fundamentals', phase: 'Learn',
       arc: 0.45, side: 'above', kind: 'workshop',
-      detail: 'Build confidence with digital logic, hardware description, simulation, and team workflows.',
+      detail: 'Build confidence with digital logic, hardware description languages, simulation, and team workflows.',
     },
     {
       id: 'build-nights', label: 'Build nights', title: 'Make it real', phase: 'Build',

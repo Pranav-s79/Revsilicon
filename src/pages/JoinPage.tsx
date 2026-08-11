@@ -54,7 +54,7 @@ export default function JoinPage() {
       <section className="apply-section" aria-labelledby="apply-heading">
         <div className="container apply-layout">
           <Reveal>
-            <p className="micro-label">Applications</p>
+            <p className="micro-label">Timeline</p>
             <h2 id="apply-heading">Applications open each semester.</h2>
             <p className="apply-note">
               The application form will appear here when available.
@@ -69,7 +69,7 @@ export default function JoinPage() {
           <Reveal className="apply-contact" delay={100}>
             <p className="micro-label">Questions?</p>
             <a className="apply-email" href={`mailto:${contact.email}`}>{contact.email}</a>
-            <p>Ask about weekly work, preparation, or where your interests fit.</p>
+            <p>Ask what a week looks like, how to prepare, or where your interests fit.</p>
           </Reveal>
         </div>
       </section>
