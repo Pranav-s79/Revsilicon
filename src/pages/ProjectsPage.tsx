@@ -47,8 +47,8 @@ function InferencePathVisual() {
 
 const inferenceFocus = [
   ['Model mapping', 'Turn inference workloads into parallel kernels.'],
-  ['Memory behavior', 'Study where data movement limits the design.'],
-  ['RTL experiments', 'Build, verify, and measure targeted hardware changes.'],
+  ['Memory behavior', 'Find where data movement becomes the bottleneck.'],
+  ['RTL experiments', 'Build, verify, and measure targeted changes to the hardware.'],
 ] as const;
 
 export default function ProjectsPage() {
@@ -75,7 +75,7 @@ export default function ProjectsPage() {
             <p className="micro-label maroon-text">NEXT DIRECTION</p>
             <h2 id="brief-heading">AI inference on Vortex.</h2>
             <p>
-              Students will connect AI workloads to an open RISC-V GPU and measure what improves performance.
+              Students run AI workloads on an open RISC-V GPU, then measure what actually makes them faster.
             </p>
             <dl className="inference-focus">
               {inferenceFocus.map(([title, detail], index) => (

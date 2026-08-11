@@ -53,7 +53,7 @@ export function HomePage() {
             <span className="hero-line"><span>Aggies designing</span></span>{' '}
             <span className="hero-line hero-line-accent"><span>real silicon.</span></span>
           </h1>
-          <p className="hero-subtitle">Learn chip design by doing it.</p>
+          <p className="hero-subtitle">Architecture to tapeout. No experience required.</p>
           <div className="hero-actions">
             <Link className="solid-button" to="/join">Join the team <span aria-hidden="true">↗</span></Link>
             <a className="text-link muted" href="#building">Explore our work <span aria-hidden="true">↓</span></a>
@@ -66,7 +66,7 @@ export function HomePage() {
           <Reveal className="intent-copy">
             <p className="micro-label">OUR MISSION</p>
             <h2 id="intent-heading">Learn it.<br />Build it.<br />Own it.</h2>
-            <p>We give Aggies hands-on chip design experience, from the first lesson to working hardware.</p>
+            <p>We teach Aggies how a chip is designed, then hand them a piece of one to build.</p>
             <Link className="text-link dark" to="/about">Meet the team <span aria-hidden="true">↗</span></Link>
           </Reveal>
           <Reveal className="intent-values" delay={110}>
@@ -86,7 +86,7 @@ export function HomePage() {
           <Reveal className="building-copy">
             <p className="micro-label">THE FIRST BUILD</p>
             <h2 id="building-heading">An open GPU, built by students.</h2>
-            <p>One shared project. Architecture, RTL, verification, and physical design.</p>
+            <p>A single design carried through architecture, RTL, verification, and physical design.</p>
             <Link className="text-link light" to="/projects">View the project <span aria-hidden="true">↗</span></Link>
           </Reveal>
           <Reveal className="building-visual" delay={110}>

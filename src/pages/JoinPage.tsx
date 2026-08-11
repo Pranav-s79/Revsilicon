@@ -7,11 +7,11 @@ export default function JoinPage() {
       <section className="inner-hero join-hero" aria-labelledby="join-heading">
         <div className="container inner-hero-grid">
           <div>
-            <p className="micro-label">Join Rev Silicon</p>
-            <h1 id="join-heading">Learn chip design by building it.</h1>
+            <p className="micro-label">Membership</p>
+            <h1 id="join-heading">Room for anyone willing to learn.</h1>
           </div>
           <p>
-            Learn how silicon gets built, then help build it. All majors and experience levels are welcome.
+            We teach the fundamentals, then put you on a team building the chip. Every major is welcome.
           </p>
         </div>
       </section>
@@ -21,7 +21,7 @@ export default function JoinPage() {
           <Reveal className="teams-intro">
             <p className="micro-label maroon-text">The teams</p>
             <h2 id="teams-heading">Pick where you want to start.</h2>
-            <p>Four teams, one project. Explore every stage, then go deep on one.</p>
+            <p>Four teams, one chip. Learn the whole flow, then pick your specialty.</p>
           </Reveal>
 
           <div className="teams-grid">

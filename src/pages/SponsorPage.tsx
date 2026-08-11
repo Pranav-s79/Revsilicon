@@ -4,22 +4,22 @@ import { contact } from '../data/site';
 const support = [
   {
     title: 'Access',
-    detail: 'Give students the tools, compute, lab hardware, and fabrication access needed to build.',
+    detail: 'Fund the software, compute, lab hardware, and fabrication runs a student chip requires.',
   },
   {
     title: 'Experience',
-    detail: 'Turn theory into practice through mentorship, design reviews, and industry-grade workflows.',
+    detail: 'Bring mentorship, design reviews, and industry workflows to students learning them for the first time.',
   },
   {
     title: 'Opportunity',
-    detail: 'Help more students enter semiconductor careers with confidence and meaningful work behind them.',
+    detail: 'Send more Aggies into semiconductor careers with real design work already behind them.',
   },
 ] as const;
 
 const sharedValues = [
-  ['Students first', 'Learning, ownership, and growth stay at the center of the partnership.'],
-  ['Meaningful work', 'Support creates real engineering experiences, not passive exposure.'],
-  ['Open doors', 'Mentorship and access make the semiconductor industry feel reachable.'],
+  ['Students first', 'What members learn and own stays at the center of the partnership.'],
+  ['Meaningful work', 'Your support funds engineering that students actually do, not passive exposure.'],
+  ['Open doors', 'Mentorship makes a semiconductor career feel within reach.'],
 ] as const;
 
 export default function SponsorPage() {
@@ -32,8 +32,8 @@ export default function SponsorPage() {
             <h1 id="sponsor-heading">Sponsor hands-on chip design.</h1>
           </div>
           <p>
-            We’re looking for organizations that believe students learn engineering by doing it. Your support gives Aggies
-            access to tools, mentors, and real project experience.
+            We’re looking for partners who believe engineers are made by building. Your support gives Aggies the tools,
+            the mentors, and the project experience to do it.
           </p>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function SponsorPage() {
           <Reveal className="partner-contact" delay={110}>
             <p className="micro-label">SPONSOR REV SILICON</p>
             <h3>Build the next generation with us.</h3>
-            <p>Tell us what your organization cares about. We’ll shape a partnership around the impact we can create together.</p>
+            <p>Tell us what your organization cares about, and we’ll build the partnership around it.</p>
             <a className="solid-button sponsor-button" href={`mailto:${contact.email}?subject=Sponsoring%20Rev%20Silicon`}>
               Start a partnership <span aria-hidden="true">↗</span>
             </a>

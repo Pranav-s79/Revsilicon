@@ -47,7 +47,7 @@ export type Officer = {
  * on the site reads from here.
  */
 export const contact = {
-  email: 'revsilicon@tamu.edu',
+  email: 'reveillesilicon@gmail.com',
   instagram: { handle: '@revsilicon', url: 'https://www.instagram.com/revsilicon' },
   linkedin: { handle: '/revsilicon', url: 'https://www.linkedin.com/company/revsilicon' },
   resources: 'https://github.com/revsilicon',
@@ -63,9 +63,9 @@ export const site = {
   ] satisfies readonly NavItem[],
 
   values: [
-    { title: 'Learn by doing.', detail: 'Turn concepts into working hardware.' },
-    { title: 'Build together.', detail: 'Grow faster with a team beside you.' },
-    { title: 'Leave ready.', detail: 'Graduate with experience that matters.' },
+    { title: 'Hands on the tools.', detail: 'You write the RTL, run the simulations, and close the timing.' },
+    { title: 'One team, one chip.', detail: 'Four specialties working on a single design, not four side projects.' },
+    { title: 'Proof, not theory.', detail: 'Graduate with design work you can put in front of an employer.' },
   ] satisfies readonly Value[],
 
   /**
@@ -176,14 +176,6 @@ export const site = {
     description:
       'Our first chip is a small RISC-V GPGPU built on the open-source Vortex ecosystem.',
     attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
-  },
-
-  /** Student-run. Executive board over one technical org and one operations org. */
-  org: {
-    branches: [
-      { title: 'Architecture', teams: ['RTL design', 'Verification', 'Physical design', 'AI inference'] },
-      { title: 'Operations', teams: ['Sponsorship', 'Outreach', 'Events & media'] },
-    ],
   },
 
   officers: [
