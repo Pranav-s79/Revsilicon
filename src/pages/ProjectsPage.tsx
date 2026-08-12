@@ -73,7 +73,7 @@ export default function ProjectsPage() {
         <div className="container brief-layout">
           <Reveal className="brief-copy">
             <p className="micro-label maroon-text">NEXT DIRECTION</p>
-            <h2 id="brief-heading">AI inference on Vortex.</h2>
+            <h2 id="brief-heading">AI inference.</h2>
             <p>
               Students run AI workloads on an open RISC-V GPU, then measure what actually makes them faster.
             </p>

@@ -63,9 +63,9 @@ export const site = {
   ] satisfies readonly NavItem[],
 
   values: [
-    { title: 'Start from zero.', detail: 'We teach the flow from logic gates up. No prerequisites.' },
-    { title: 'Your block, our chip.', detail: 'Four teams share one design. Your piece has to work with theirs.' },
-    { title: 'Leave with silicon.', detail: 'Graduate having carried a design all the way to fabrication.' },
+    { title: 'Start from zero', detail: 'We teach the full ASIC flow. No prerequisites.' },
+    { title: 'Your block, our chip', detail: 'Four teams. One design.' },
+    { title: 'Leave with silicon', detail: 'Graduate having carried a design all the way to fabrication.' },
   ] satisfies readonly Value[],
 
   /**
@@ -75,15 +75,15 @@ export const site = {
   process: [
     {
       title: 'Architecture',
-      summary: 'Define the instruction set, block boundaries, memory hierarchy, and interfaces before RTL begins.',
+      summary: 'Define architectural and microarchitectural specifications, subsystem boundaries, interfaces, memory organization, and design constraints before RTL implementation.',
     },
     {
       title: 'RTL design',
-      summary: 'Translate the architecture into synthesizable SystemVerilog for datapaths, control logic, and block interfaces.',
+      summary: 'Implement the defined microarchitecture in synthesizable SystemVerilog, including datapaths, control logic, state, and subsystem interfaces.',
     },
     {
       title: 'Verification',
-      summary: 'Prove the RTL matches the specification with testbenches, assertions, and coverage.',
+      summary: 'Verify the RTL against the specification using simulation, assertions, coverage, and formal checks.',
     },
     {
       title: 'Synthesis',
@@ -119,7 +119,7 @@ export const site = {
       skills: ['OpenROAD / OpenLane', 'Static timing analysis', 'Floorplanning', 'Linux & Tcl'],
     },
     {
-      title: 'AI inference',
+      title: 'AI architecture',
       overview:
         'Decide what the silicon is for. You profile ML workloads and shape the accelerator around them: datapath width, memory, and dataflow.',
       skills: ['PyTorch', 'Computer architecture', 'Quantization', 'C++ / Python modeling'],
@@ -172,9 +172,9 @@ export const site = {
 
   project: {
     eyebrow: 'Project 01',
-    title: 'An open RISC-V accelerator.',
+    title: 'A GPU with AI inference acceleration.',
     description:
-      'Our first chip is a small RISC-V GPGPU built on the open-source Vortex ecosystem.',
+      'Our first chip, built on the open-source Vortex GPGPU.',
     attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
   },
 

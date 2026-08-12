@@ -65,9 +65,8 @@ export function HomePage() {
         <div className="container intent-layout">
           <Reveal className="intent-copy">
             <p className="micro-label">OUR MISSION</p>
-            <h2 id="intent-heading">Learn it.<br />Build it.<br />Own it.</h2>
+            <h2 id="intent-heading">Learn<br />Design<br />Tapeout</h2>
             <p>Aggies arrive without a hardware background and leave having designed part of a real chip.</p>
-            <Link className="text-link dark" to="/about">Meet the team <span aria-hidden="true">↗</span></Link>
           </Reveal>
           <Reveal className="intent-values" delay={110}>
             {site.values.map((value, index) => (
