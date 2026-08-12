@@ -63,7 +63,7 @@ export const site = {
   ] satisfies readonly NavItem[],
 
   values: [
-    { title: 'Start from zero', detail: 'We teach the full ASIC flow — no prerequisites.' },
+    { title: 'Start from zero', detail: 'We teach the full ASIC flow, no experience needed.' },
     { title: 'Your block, our chip', detail: 'Four teams, one design.' },
     { title: 'Leave with silicon', detail: 'Graduate having carried a design all the way to fabrication.' },
   ] satisfies readonly Value[],

@@ -8,7 +8,7 @@ const support = [
   },
   {
     title: 'Experience',
-    detail: 'Bring mentorship, design reviews, and industry workflows to students learning them for the first time.',
+    detail: 'Bring mentorship, design reviews, and industry workflows most students have never seen.',
   },
   {
     title: 'Opportunity',
@@ -18,7 +18,7 @@ const support = [
 
 const sharedValues = [
   ['Students first', 'What members learn and own stays at the center of the partnership.'],
-  ['Meaningful work', 'Your support funds engineering that students actually do, not passive exposure.'],
+  ['Meaningful work', 'Your support funds engineering work students actually do.'],
   ['Open doors', 'Mentorship makes a semiconductor career feel within reach.'],
 ] as const;
 
@@ -32,8 +32,8 @@ export default function SponsorPage() {
             <h1 id="sponsor-heading">Sponsor hands-on chip design.</h1>
           </div>
           <p>
-            We’re looking for partners who believe engineers are made by building, and who’ll give Aggies the tools,
-            mentors, and project experience to do it.
+            We partner with organizations that believe engineers are made by building. We give Aggies the tools,
+            mentors, and project experience to prove it.
           </p>
         </div>
       </section>

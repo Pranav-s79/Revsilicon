@@ -15,7 +15,7 @@ const STRIDE_REACH = 0.9;
 const CELLS_PER_BOUND = 4;
 /**
  * Opacity ceiling for the runner. The maroon body is nearly the colour of the hero
- * gradient, so the white markings carry the silhouette — much below this and it stops
+ * gradient, so the white markings carry the silhouette. Much below this and it stops
  * reading as a dog at all.
  */
 const RUNNER_ALPHA = 0.66;
