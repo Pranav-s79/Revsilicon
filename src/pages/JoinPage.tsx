@@ -11,7 +11,7 @@ export default function JoinPage() {
             <h1 id="join-heading">Room for anyone willing to learn.</h1>
           </div>
           <p>
-            We teach the fundamentals, then put you on a team building the chip. Every major is welcome.
+            We teach the fundamentals, then put you on a team building the chip.
           </p>
         </div>
       </section>
@@ -21,7 +21,7 @@ export default function JoinPage() {
           <Reveal className="teams-intro">
             <p className="micro-label maroon-text">The teams</p>
             <h2 id="teams-heading">Pick where you want to start.</h2>
-            <p>Four teams, one chip. Learn the whole flow, then pick your specialty.</p>
+            <p>Four teams, one chip.</p>
           </Reveal>
 
           <div className="teams-grid">

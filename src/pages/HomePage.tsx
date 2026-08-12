@@ -53,7 +53,6 @@ export function HomePage() {
             <span className="hero-line"><span>Aggies designing</span></span>{' '}
             <span className="hero-line hero-line-accent"><span>real silicon.</span></span>
           </h1>
-          <p className="hero-subtitle">Architecture to tapeout. No experience required.</p>
           <div className="hero-actions">
             <Link className="solid-button" to="/join">Join the team <span aria-hidden="true">↗</span></Link>
             <a className="text-link muted" href="#building">Explore our work <span aria-hidden="true">↓</span></a>

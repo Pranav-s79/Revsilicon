@@ -32,8 +32,8 @@ export default function SponsorPage() {
             <h1 id="sponsor-heading">Sponsor hands-on chip design.</h1>
           </div>
           <p>
-            We’re looking for partners who believe engineers are made by building. Your support gives Aggies the tools,
-            the mentors, and the project experience to do it.
+            We’re looking for partners who believe engineers are made by building, and who’ll give Aggies the tools,
+            mentors, and project experience to do it.
           </p>
         </div>
       </section>
