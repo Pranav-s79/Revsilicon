@@ -1,3 +1,5 @@
+import { officerTonyBuieUrl } from '../assets';
+
 export type NavItem = {
   readonly label: string;
   readonly to: string;
@@ -71,6 +73,7 @@ const officers: readonly Officer[] = [
   {
     role: 'President',
     name: 'Tony Buie',
+    photo: officerTonyBuieUrl,
     major: 'Electrical Engineering',
     gradYear: '2028',
     bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
