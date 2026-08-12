@@ -1107,16 +1107,27 @@ button {
 
 .officer-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
   overflow: hidden;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   background: var(--white);
   border: 1px solid var(--line);
   transition: border-color 180ms ease, box-shadow 180ms ease;
+  font: inherit;
 }
 
-.officer-card:hover {
+.officer-card:hover,
+.officer-card:focus-visible {
   border-color: var(--line-strong);
   box-shadow: 0 18px 42px rgba(20, 26, 32, 0.09);
 }
+
+.officer-card:focus-visible { outline: 2px solid var(--maroon); outline-offset: 2px; }
 
 .officer-index {
   position: absolute;
@@ -1128,6 +1139,31 @@ button {
   color: var(--white);
   text-align: center;
   background: var(--maroon);
+}
+
+.officer-expand {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: var(--maroon);
+  font-size: 15px;
+  line-height: 1;
+  background: var(--white);
+  border: 1px solid var(--line);
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.officer-card:hover .officer-expand,
+.officer-card:focus-visible .officer-expand {
+  color: var(--white);
+  background: var(--maroon);
+  border-color: var(--maroon);
+  transform: rotate(90deg);
 }
 
 .portrait-placeholder {
@@ -1142,10 +1178,16 @@ button {
   border-bottom: 1px solid var(--line);
 }
 
-.portrait-placeholder img {
+.portrait-placeholder img.is-placeholder {
   width: 52%;
   opacity: 0.16;
   filter: grayscale(1);
+}
+
+.portrait-placeholder img:not(.is-placeholder) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .officer-card-copy { padding: 22px 22px 24px; }
@@ -1159,12 +1201,160 @@ button {
 }
 
 .officer-card-copy p {
-  min-height: 3.2em;
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
 }
+
+.officer-view-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: var(--red);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.68;
+  transition: opacity 180ms ease, gap 180ms ease;
+}
+
+.officer-card:hover .officer-view-hint,
+.officer-card:focus-visible .officer-view-hint {
+  gap: 10px;
+  opacity: 1;
+}
+
+/* Officer profile dialog */
+
+.officer-dialog-layer {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 24px;
+  place-items: center;
+}
+
+.officer-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  background: rgba(5, 15, 28, 0.6);
+  backdrop-filter: blur(3px);
+  border: none;
+}
+
+.officer-dialog {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 230px) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+  width: min(100%, 760px);
+  max-height: min(88vh, 720px);
+  margin: 0;
+  padding: clamp(30px, 4vw, 46px);
+  overflow-y: auto;
+  background: var(--white);
+  border-top: 4px solid var(--maroon);
+  box-shadow: 0 32px 90px rgba(20, 5, 7, 0.32);
+  animation: detail-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.officer-dialog-media {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.officer-dialog-portrait {
+  position: relative;
+  display: grid;
+  aspect-ratio: 4 / 5;
+  place-items: center;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(11, 26, 46, 0.05) 12px 13px),
+    var(--cream-deep);
+  border: 1px solid var(--line);
+}
+
+.officer-dialog-portrait img.is-placeholder {
+  width: 46%;
+  opacity: 0.16;
+  filter: grayscale(1);
+}
+
+.officer-dialog-portrait img:not(.is-placeholder) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.officer-dialog-media .micro-label { margin: 0 0 6px; }
+
+.officer-dialog-media h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.officer-dialog-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  min-width: 0;
+}
+
+.officer-dialog-field { padding-top: 18px; border-top: 1px solid var(--line); }
+.officer-dialog-field:first-child { padding-top: 0; border-top: 0; }
+.officer-dialog-field .micro-label { margin: 0 0 8px; color: var(--red); }
+
+.officer-dialog-field p:not(.micro-label) {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.72;
+}
+
+.officer-dialog-close {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  place-items: center;
+  cursor: pointer;
+  background: var(--white);
+  border: 1px solid var(--line);
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.officer-dialog-close span {
+  position: absolute;
+  width: 15px;
+  height: 1.5px;
+  background: var(--navy);
+  transform: rotate(45deg);
+}
+
+.officer-dialog-close span:last-child { transform: rotate(-45deg); }
+.officer-dialog-close:hover { background: var(--cream); border-color: var(--maroon); }
 
 /* Projects */
 
@@ -2361,7 +2551,11 @@ button {
   .officer-grid { gap: 16px; }
   .officer-card-copy { padding: 18px 16px 20px; }
   .officer-card-copy h3 { font-size: 18px; }
-  .officer-card-copy p { min-height: 4.8em; font-size: 12px; }
+  .officer-card-copy p { font-size: 12px; }
+  .officer-dialog-layer { padding: 14px; }
+  .officer-dialog { grid-template-columns: 1fr; max-height: 92vh; padding: 30px 22px 26px; }
+  .officer-dialog-portrait { max-width: 190px; margin: 0 0 18px; }
+  .officer-dialog-close { top: 14px; right: 14px; }
   .process-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .process-rail > button { padding: 18px 10px 20px; }
   .process-rail > button:nth-of-type(3) { border-right: 1px solid rgba(251, 250, 246, 0.08); }

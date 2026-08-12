@@ -39,7 +39,11 @@ export type Value = {
 
 export type Officer = {
   readonly role: string;
-  readonly focus: string;
+  readonly name?: string;
+  readonly photo?: string;
+  readonly major?: string;
+  readonly gradYear?: string;
+  readonly bio?: string;
 };
 
 /**
@@ -52,6 +56,29 @@ export const contact = {
   linkedin: { handle: '/revsilicon', url: 'https://www.linkedin.com/company/revsilicon' },
   resources: 'https://github.com/revsilicon',
 } as const;
+
+/**
+ * Officers without a name yet render as a placeholder card ("Profile coming
+ * soon") using the club mark in place of a portrait. Drop a photo into
+ * assets/officers/ and reference it here via `photo` once it's ready.
+ *
+ * Typed separately from `site` (rather than inline) so the optional fields
+ * stay optional — `site`'s trailing `as const` would otherwise narrow each
+ * officer to its own literal shape and break `officer.photo` access for
+ * entries that don't set every field.
+ */
+const officers: readonly Officer[] = [
+  {
+    role: 'President',
+    name: 'Tony Buie',
+    major: 'Electrical Engineering',
+    gradYear: '2028',
+    bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
+  },
+  { role: 'Vice president' },
+  { role: 'Architecture lead' },
+  { role: 'Operations lead' },
+];
 
 export const site = {
   nav: [
@@ -178,10 +205,5 @@ export const site = {
     attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
   },
 
-  officers: [
-    { role: 'President', focus: 'Strategy, partnerships, and club direction.' },
-    { role: 'Vice president', focus: 'Team coordination and day-to-day execution.' },
-    { role: 'Architecture lead', focus: 'Technical roadmap, standards, and integration.' },
-    { role: 'Operations lead', focus: 'Events, outreach, and member experience.' },
-  ] satisfies readonly Officer[],
+  officers,
 } as const;
