@@ -48,6 +48,11 @@ export type Officer = {
   readonly bio?: string;
 };
 
+export type OfficerGroup = {
+  readonly title: string;
+  readonly officers: readonly Officer[];
+};
+
 /**
  * Placeholder destinations. Replace these three before launch. Everything else
  * on the site reads from here.
@@ -69,18 +74,35 @@ export const contact = {
  * officer to its own literal shape and break `officer.photo` access for
  * entries that don't set every field.
  */
-const officers: readonly Officer[] = [
+const officerGroups: readonly OfficerGroup[] = [
   {
-    role: 'President',
-    name: 'Tony Buie',
-    photo: officerTonyBuieUrl,
-    major: 'Electrical Engineering',
-    gradYear: '2028',
-    bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
+    title: 'Executive',
+    officers: [
+      {
+        role: 'Co-president',
+        name: 'Tony Buie',
+        photo: officerTonyBuieUrl,
+        major: 'Electrical Engineering',
+        gradYear: '2028',
+        bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
+      },
+      { role: 'Co-president' },
+      { role: 'Co-president' },
+    ],
   },
-  { role: 'Vice president' },
-  { role: 'Architecture lead' },
-  { role: 'Operations lead' },
+  {
+    title: 'Technical team leads',
+    officers: [
+      { role: 'RTL design lead' },
+      { role: 'Verification lead' },
+      { role: 'Physical design lead' },
+      { role: 'AI architecture lead' },
+    ],
+  },
+  {
+    title: 'Operations',
+    officers: [{ role: 'Operations lead' }],
+  },
 ];
 
 export const site = {
@@ -208,5 +230,5 @@ export const site = {
     attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
   },
 
-  officers,
+  officerGroups,
 } as const;
