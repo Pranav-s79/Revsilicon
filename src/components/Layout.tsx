@@ -1,5 +1,5 @@
 import { type PropsWithChildren, useEffect, useId, useState } from 'react';
-import { logoMarkUrl } from '../assets';
+import { revsiliconLogoUrl } from '../assets';
 import { contact, site } from '../data/site';
 import { Link, NavLink, useLocation } from '../router';
 
@@ -25,7 +25,7 @@ function Header() {
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="Rev Silicon home" onClick={() => setOpen(false)}>
           <span className="brand-mark-wrap">
-            <img src={logoMarkUrl} alt="" className="brand-mark" />
+            <img src={revsiliconLogoUrl} alt="" className="brand-mark" />
           </span>
           <span className="brand-name">REV SILICON</span>
         </Link>

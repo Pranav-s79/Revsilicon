@@ -79,15 +79,15 @@ const officerGroups: readonly OfficerGroup[] = [
     title: 'Executive',
     officers: [
       {
-        role: 'Co-president',
+        role: 'Technical co-president',
         name: 'Tony Buie',
         photo: officerTonyBuieUrl,
         major: 'Electrical Engineering',
         gradYear: '2028',
         bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
       },
-      { role: 'Co-president' },
-      { role: 'Co-president' },
+      { role: 'Technical co-president' },
+      { role: 'Operations co-president' },
     ],
   },
   {
@@ -101,7 +101,7 @@ const officerGroups: readonly OfficerGroup[] = [
   },
   {
     title: 'Operations',
-    officers: [{ role: 'Operations lead' }],
+    officers: [{ role: 'Treasurer' }],
   },
 ];
 
