@@ -19,9 +19,7 @@ export default function JoinPage() {
       <section className="teams-section" aria-labelledby="teams-heading">
         <div className="container">
           <Reveal className="teams-intro">
-            <p className="micro-label maroon-text">The teams</p>
             <h2 id="teams-heading">Pick where you want to start.</h2>
-            <p>Four teams, one chip.</p>
           </Reveal>
 
           <div className="teams-grid">

@@ -41,7 +41,6 @@ export default function SponsorPage() {
       <section className="support-section" aria-labelledby="support-heading">
         <div className="container">
           <Reveal className="support-intro">
-            <p className="micro-label maroon-text">SHARED MISSION</p>
             <h2 id="support-heading">What your support unlocks.</h2>
           </Reveal>
           <div className="support-grid">
@@ -59,7 +58,6 @@ export default function SponsorPage() {
       <section className="partner-section" aria-labelledby="partner-heading">
         <div className="container partner-layout">
           <Reveal className="partner-copy">
-            <p className="micro-label">A PARTNERSHIP WITH PURPOSE</p>
             <h2 id="partner-heading">Aligned on what matters.</h2>
             <dl className="partner-returns">
               {sharedValues.map(([title, detail]) => (
@@ -72,7 +70,6 @@ export default function SponsorPage() {
           </Reveal>
 
           <Reveal className="partner-contact" delay={110}>
-            <p className="micro-label">SPONSOR REV SILICON</p>
             <h3>Build the next generation with us.</h3>
             <p>Tell us what your organization cares about, and we’ll build the partnership around it.</p>
             <a className="solid-button sponsor-button" href={`mailto:${contact.email}?subject=Sponsoring%20Rev%20Silicon`}>

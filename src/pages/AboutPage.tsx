@@ -134,7 +134,6 @@ export default function AboutPage() {
                           onClick={() => setOpenIndex(index)}
                           aria-haspopup="dialog"
                         >
-                          <span className="officer-index">{String(position + 1).padStart(2, '0')}</span>
                           <span className="officer-expand" aria-hidden="true">+</span>
                           <div className="portrait-placeholder" role="img" aria-label={`${officer.name ?? officer.role} portrait`}>
                             <img src={officer.photo ?? logoMarkUrl} alt="" className={officer.photo ? '' : 'is-placeholder'} />

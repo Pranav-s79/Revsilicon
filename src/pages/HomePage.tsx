@@ -65,7 +65,7 @@ export function HomePage() {
           <Reveal className="intent-copy">
             <p className="micro-label">OUR MISSION</p>
             <h2 id="intent-heading">Learn<br />Design<br />Tapeout</h2>
-            <p>Aggies arrive without a hardware background and leave having designed part of a real chip.</p>
+            <p>Aggies can arrive with no VLSI background, leave ready for the industry.</p>
           </Reveal>
           <Reveal className="intent-values" delay={110}>
             {site.values.map((value, index) => (
@@ -83,7 +83,7 @@ export function HomePage() {
         <div className="container building-layout">
           <Reveal className="building-copy">
             <p className="micro-label">THE FIRST BUILD</p>
-            <h2 id="building-heading">An open GPU, built by students.</h2>
+            <h2 id="building-heading">GPU + <br />AI Inference</h2>
             <p>A single design carried through architecture, RTL, verification, and physical design.</p>
             <Link className="text-link light" to="/projects">View the project <span aria-hidden="true">↗</span></Link>
           </Reveal>

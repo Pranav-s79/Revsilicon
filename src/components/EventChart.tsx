@@ -105,7 +105,6 @@ export function EventChart() {
       <div className="container">
         <div className="calendar-heading">
           <div>
-            <p className="micro-label">CLUB LIFE</p>
             <h2 id="calendar-heading">The club, in motion.</h2>
           </div>
           <p className="chart-unit">WORKSHOPS · BUILD NIGHTS · SPEAKERS · MILESTONES</p>

@@ -1,5 +1,17 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { revsiliconLogoUrl } from '../assets';
+
+/** Manual rounded-rect path so the die plate doesn't depend on CanvasRenderingContext2D.roundRect support. */
+function roundedRectPath(context: CanvasRenderingContext2D, x: number, y: number, size: number, radius: number) {
+  context.beginPath();
+  context.moveTo(x + radius, y);
+  context.arcTo(x + size, y, x + size, y + size, radius);
+  context.arcTo(x + size, y + size, x, y + size, radius);
+  context.arcTo(x, y + size, x, y, radius);
+  context.arcTo(x, y, x + size, y, radius);
+  context.closePath();
+}
 
 type SceneState = {
   targetX: number;
@@ -18,79 +30,111 @@ function requireContext(canvas: HTMLCanvasElement) {
 }
 
 function createDieTexture() {
+  /** Rendered at 2x the old 512px canvas so the die reads sharp at close camera range instead of blocky. */
+  const size = 1024;
+  const scale = size / 512;
   const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
+  canvas.width = size;
+  canvas.height = size;
   const context = requireContext(canvas);
   context.fillStyle = '#0b1017';
-  context.fillRect(0, 0, 512, 512);
+  context.fillRect(0, 0, size, size);
 
-  const sheen = context.createLinearGradient(0, 0, 512, 512);
+  const sheen = context.createLinearGradient(0, 0, size, size);
   sheen.addColorStop(0, 'rgba(209,221,236,.22)');
   sheen.addColorStop(0.48, 'rgba(112,139,172,.08)');
   sheen.addColorStop(1, 'rgba(112,139,172,0)');
   context.fillStyle = sheen;
-  context.fillRect(0, 0, 512, 512);
+  context.fillRect(0, 0, size, size);
 
-  const padding = 34;
-  const span = 512 - padding * 2;
+  const padding = 34 * scale;
+  const span = size - padding * 2;
   const cellSize = span / 4;
   context.strokeStyle = 'rgba(201,217,236,.48)';
-  context.lineWidth = 1.2;
+  context.lineWidth = 1.2 * scale;
   for (let column = 0; column < 4; column += 1) {
     for (let row = 0; row < 4; row += 1) {
-      const x = padding + column * cellSize + 5;
-      const y = padding + row * cellSize + 5;
-      const size = cellSize - 10;
-      context.strokeRect(x, y, size, size);
+      const x = padding + column * cellSize + 5 * scale;
+      const y = padding + row * cellSize + 5 * scale;
+      const cellInset = cellSize - 10 * scale;
+      context.strokeRect(x, y, cellInset, cellInset);
       context.fillStyle = 'rgba(164,188,216,.11)';
-      context.fillRect(x, y, size, size);
-      const quadrant = (size - 9) / 2;
+      context.fillRect(x, y, cellInset, cellInset);
+      const quadrant = (cellInset - 9 * scale) / 2;
       context.fillStyle = 'rgba(219,228,239,.22)';
       for (let qx = 0; qx < 2; qx += 1) {
         for (let qy = 0; qy < 2; qy += 1) {
-          context.fillRect(x + 3 + qx * (quadrant + 3), y + 3 + qy * (quadrant + 3), quadrant, quadrant);
+          context.fillRect(
+            x + 3 * scale + qx * (quadrant + 3 * scale),
+            y + 3 * scale + qy * (quadrant + 3 * scale),
+            quadrant,
+            quadrant,
+          );
         }
       }
     }
   }
 
-  context.fillStyle = '#0a0f16';
-  context.beginPath();
-  context.arc(256, 256, 62, 0, Math.PI * 2);
+  const center = size / 2;
+  /** Plate spans the four center grid cells so the logo reads clearly without zooming in. */
+  const plateSize = 224 * scale;
+  const plateX = center - plateSize / 2;
+  const plateY = center - plateSize / 2;
+  const plateRadius = 20 * scale;
+  roundedRectPath(context, plateX, plateY, plateSize, plateRadius);
+  context.fillStyle = '#f1eee8';
   context.fill();
   context.strokeStyle = '#8c2230';
-  context.lineWidth = 2;
+  context.lineWidth = 3 * scale;
   context.stroke();
   context.strokeStyle = 'rgba(241,238,232,.46)';
-  context.lineWidth = 1.2;
-  context.strokeRect(padding - 12, padding - 12, span + 24, span + 24);
+  context.lineWidth = 1.2 * scale;
+  context.strokeRect(padding - 12 * scale, padding - 12 * scale, span + 24 * scale, span + 24 * scale);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 4;
+  texture.anisotropy = 8;
+
+  /** The die badge draws in asynchronously once the brand logo image decodes. */
+  const badge = new Image();
+  badge.onload = () => {
+    const boxSize = plateSize - 28 * scale;
+    const badgeScale = Math.min(boxSize / badge.width, boxSize / badge.height);
+    const drawWidth = badge.width * badgeScale;
+    const drawHeight = badge.height * badgeScale;
+    context.save();
+    roundedRectPath(context, plateX, plateY, plateSize, plateRadius);
+    context.clip();
+    context.drawImage(badge, center - drawWidth / 2, center - drawHeight / 2, drawWidth, drawHeight);
+    context.restore();
+    texture.needsUpdate = true;
+  };
+  badge.src = revsiliconLogoUrl;
+
   return texture;
 }
 
 function createBrandTexture() {
+  /** Rendered at 2x so the plate text stays crisp instead of soft/blocky up close. */
   const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 128;
+  canvas.width = 1024;
+  canvas.height = 256;
   const context = requireContext(canvas);
-  const background = context.createLinearGradient(0, 0, 512, 0);
+  const background = context.createLinearGradient(0, 0, 1024, 0);
   background.addColorStop(0, '#30353b');
   background.addColorStop(1, '#1d2126');
   context.fillStyle = background;
-  context.fillRect(0, 0, 512, 128);
+  context.fillRect(0, 0, 1024, 256);
   context.fillStyle = '#f1eee8';
-  context.fillRect(16, 43, 42, 42);
+  context.fillRect(32, 86, 84, 84);
   context.fillStyle = '#500000';
-  context.fillRect(25, 52, 24, 24);
+  context.fillRect(50, 104, 48, 48);
   context.fillStyle = '#f1eee8';
-  context.font = '500 39px Archivo, Helvetica, Arial, sans-serif';
-  context.fillText('REV SILICON', 78, 78);
+  context.font = '500 78px Archivo, Helvetica, Arial, sans-serif';
+  context.fillText('REV SILICON', 156, 156);
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
   return texture;
 }
 
@@ -126,11 +170,11 @@ function buildAccelerator() {
   const finMaterial = new THREE.MeshStandardMaterial({ color: 0x4b545e, metalness: 0.96, roughness: 0.24 });
   const silverMaterial = new THREE.MeshStandardMaterial({ color: 0xd7d9d8, metalness: 0.94, roughness: 0.2 });
   const maroonMaterial = new THREE.MeshStandardMaterial({
-    color: 0x64111a,
-    metalness: 0.55,
-    roughness: 0.36,
-    emissive: 0x210004,
-    emissiveIntensity: 0.34,
+    color: 0x8c1420,
+    metalness: 0.5,
+    roughness: 0.32,
+    emissive: 0x3a0008,
+    emissiveIntensity: 0.46,
   });
   const dieMaterial = new THREE.MeshStandardMaterial({
     map: createDieTexture(),
@@ -195,7 +239,8 @@ function buildAccelerator() {
     bevelEnabled: true,
     bevelSize: 0.018,
     bevelThickness: 0.018,
-    bevelSegments: 2,
+    bevelSegments: 4,
+    curveSegments: 64,
   });
   shroudGeometry.rotateX(-Math.PI / 2);
   const shroud = new THREE.Mesh(shroudGeometry, graphite);
@@ -215,7 +260,7 @@ function buildAccelerator() {
   }
 
   box(2, 0.13, 2, graphite, 0, 0.02, 0);
-  const dieFrame = new THREE.Mesh(new THREE.TorusGeometry(1.06, 0.018, 8, 4), maroonMaterial);
+  const dieFrame = new THREE.Mesh(new THREE.TorusGeometry(1.06, 0.018, 16, 4), maroonMaterial);
   dieFrame.rotation.x = Math.PI / 2;
   dieFrame.rotation.z = Math.PI / 4;
   dieFrame.position.y = 0.1;
@@ -234,9 +279,9 @@ function buildAccelerator() {
     const fan = new THREE.Group();
     fan.name = 'fan-rotor';
     fan.position.set(x, 0.3, 0);
-    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.14, 28), graphite);
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.14, 48), graphite);
     fan.add(hub);
-    const badge = new THREE.Mesh(new THREE.CircleGeometry(0.2, 24), maroonMaterial);
+    const badge = new THREE.Mesh(new THREE.CircleGeometry(0.2, 48), maroonMaterial);
     badge.rotation.x = -Math.PI / 2;
     badge.position.y = 0.075;
     fan.add(badge);
@@ -249,7 +294,7 @@ function buildAccelerator() {
       blade.rotation.z = 0.28;
       fan.add(blade);
     }
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.92, 0.03, 8, 40), graphite);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.92, 0.03, 16, 64), graphite);
     ring.rotation.x = Math.PI / 2;
     ring.position.y = 0.06;
     fan.add(ring);
@@ -320,7 +365,7 @@ export function AcceleratorScene() {
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.3;

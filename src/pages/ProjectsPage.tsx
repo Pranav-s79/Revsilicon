@@ -60,7 +60,17 @@ export default function ProjectsPage() {
             <p className="micro-label">{site.project.eyebrow}</p>
             <h1 id="projects-heading">{site.project.title}</h1>
           </div>
-          <p>{site.project.description}</p>
+          <div className="project-lede">
+            <p>{site.project.description}</p>
+            <a
+              className="text-link muted vortex-credit"
+              href="https://github.com/vortexgpgpu/vortex"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Click here for Vortex&apos;s GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
         <div className="accelerator-stage">
           <Suspense fallback={<AcceleratorFallback />}>
