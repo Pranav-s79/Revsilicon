@@ -79,7 +79,7 @@ export default function JoinPage() {
       <section className="path-section" aria-labelledby="path-heading">
         <div className="container">
           <Reveal className="path-intro">
-            <h2 id="path-heading">Two ways to start</h2>
+            <h2 id="path-heading">Two paths</h2>
           </Reveal>
           <Reveal delay={90}>
             <PathSplit />
