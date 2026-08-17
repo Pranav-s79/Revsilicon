@@ -8,7 +8,7 @@ export default function JoinPage() {
         <div className="container apply-layout">
           <Reveal>
             <p className="micro-label">Timeline</p>
-            <h1 id="apply-heading">Applications open each semester.</h1>
+            <h1 id="apply-heading">Applications open each semester</h1>
             <a className="apply-button" href={contact.applyForm} target="_blank" rel="noreferrer noopener">
               <span>Apply here</span>
               <span className="apply-arrow" aria-hidden="true">↗</span>
@@ -26,7 +26,7 @@ export default function JoinPage() {
       <section className="teams-section" aria-labelledby="teams-heading">
         <div className="container">
           <Reveal className="teams-intro">
-            <h2 id="teams-heading">Pick where you want to start.</h2>
+            <h2 id="teams-heading">Pick where you want to start</h2>
           </Reveal>
 
           <div className="teams-grid">
@@ -46,7 +46,7 @@ export default function JoinPage() {
           <Reveal className="resources-strip">
             <div>
               <p className="micro-label maroon-text">Before you apply</p>
-              <h3>Start with the fundamentals.</h3>
+              <h3>Start with the fundamentals</h3>
               <p>Our resource repository includes the tutorials, textbooks, and setup guides each team uses.</p>
             </div>
             <a className="text-link dark" href={contact.resources} target="_blank" rel="noreferrer noopener">
