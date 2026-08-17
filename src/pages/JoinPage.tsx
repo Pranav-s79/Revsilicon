@@ -22,10 +22,12 @@ function PathSplit() {
         <p className="path-panel-index">01</p>
         <h3>Bootcamp</h3>
         <p className="path-panel-tag">New to chip design</p>
-        <p className="path-panel-detail">
-          Structured workshops covering digital logic, HDL, simulation, and the ASIC flow, in a guided
-          cohort with weekly milestones. No experience required.
-        </p>
+        <ul className="path-panel-detail">
+          <li>One semester long</li>
+          <li>Learn digital design, verification, and RISC-V fundamentals individually</li>
+          <li>Group up to build a RISC-V processor together</li>
+          <li>Finish by learning physical design to implement it</li>
+        </ul>
       </button>
 
       <button
@@ -37,12 +39,13 @@ function PathSplit() {
         onBlur={() => setHovered(null)}
       >
         <p className="path-panel-index">02</p>
-        <h3>The project</h3>
+        <h3>CORE team</h3>
         <p className="path-panel-tag">Already comfortable with the basics</p>
-        <p className="path-panel-detail">
-          Join a team building the GPU + AI inference chip directly, working the real ASIC flow end to
-          end alongside members who've done it before.
-        </p>
+        <ul className="path-panel-detail">
+          <li>Work directly on the GPU + AI inference chip</li>
+          <li>Full ASIC flow, start to finish</li>
+          <li>Alongside members who've done it before</li>
+        </ul>
       </button>
     </div>
   );

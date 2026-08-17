@@ -2172,12 +2172,43 @@ button {
 .path-panel-detail {
   max-width: 380px;
   margin: 14px 0 0;
+  padding: 0;
   color: rgba(251, 250, 246, 0.78);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.5;
+  list-style: none;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 380ms ease 80ms, transform 380ms ease 80ms;
+}
+
+.path-panel-detail li {
+  position: relative;
+  margin-top: 8px;
+  padding-left: 16px;
+}
+
+.path-panel-detail li:first-child { margin-top: 0; }
+
+.path-panel-detail li::before {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  content: '';
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.path-panel-project .path-panel-detail li {
+  padding-right: 16px;
+  padding-left: 0;
+}
+
+.path-panel-project .path-panel-detail li::before {
+  right: 0;
+  left: auto;
 }
 
 .path-panel.is-grown .path-panel-detail { opacity: 1; transform: none; }
