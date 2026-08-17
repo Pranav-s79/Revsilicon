@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { logoPlateCleanUrl, revsiliconLogoUrl } from '../assets';
 import { Reveal } from '../components/Reveal';
 import { contact, site } from '../data/site';
 
@@ -19,14 +20,15 @@ function PathSplit() {
         onFocus={() => setHovered('bootcamp')}
         onBlur={() => setHovered(null)}
       >
+        <img src={logoPlateCleanUrl} alt="" className="path-panel-mark" aria-hidden="true" />
         <p className="path-panel-index">01</p>
         <h3>Bootcamp</h3>
         <p className="path-panel-tag">New to chip design</p>
         <ul className="path-panel-detail">
-          <li>One semester long</li>
-          <li>Learn digital design, verification, and RISC-V fundamentals individually</li>
-          <li>Group up to build a RISC-V processor together</li>
-          <li>Finish by learning physical design to implement it</li>
+          <li>Runs one semester, start to finish</li>
+          <li>Learn digital design, verification, and RISC-V fundamentals</li>
+          <li>Group up to build a RISC-V processor</li>
+          <li>Learn physical design to implement it together</li>
         </ul>
       </button>
 
@@ -38,13 +40,14 @@ function PathSplit() {
         onFocus={() => setHovered('project')}
         onBlur={() => setHovered(null)}
       >
+        <img src={revsiliconLogoUrl} alt="" className="path-panel-mark" aria-hidden="true" />
         <p className="path-panel-index">02</p>
         <h3>CORE team</h3>
         <p className="path-panel-tag">Already comfortable with the basics</p>
         <ul className="path-panel-detail">
           <li>Work directly on the GPU + AI inference chip</li>
-          <li>Full ASIC flow, start to finish</li>
-          <li>Alongside members who've done it before</li>
+          <li>Run the full ASIC flow, start to finish</li>
+          <li>Build alongside members who've done it before</li>
         </ul>
       </button>
     </div>
@@ -76,7 +79,6 @@ export default function JoinPage() {
       <section className="path-section" aria-labelledby="path-heading">
         <div className="container">
           <Reveal className="path-intro">
-            <p className="micro-label">Bootcamp or the project</p>
             <h2 id="path-heading">Two ways to start</h2>
           </Reveal>
           <Reveal delay={90}>
