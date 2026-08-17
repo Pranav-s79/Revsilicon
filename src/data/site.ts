@@ -110,7 +110,14 @@ const officerGroups: readonly OfficerGroup[] = [
   },
   {
     title: 'Operations',
-    officers: [{ role: 'Treasurer', name: 'Pranav Senthilkumar', photo: officerPranavSenthilkumarUrl }],
+    officers: [
+      {
+        role: 'Treasurer',
+        name: 'Pranav Senthilkumar',
+        photo: officerPranavSenthilkumarUrl,
+        bio: 'Hey, I\'m Pranav! I\'m a sophomore engineering student with a strong interest in the VLSI industry, semiconductor design, and integrating AI into hardware and computing systems. I enjoy learning about new technologies and meeting new people. Outside of engineering, I\'m usually lifting, climbing, or finding something new to work on!',
+      },
+    ],
   },
 ];
 
