@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-The development server prints its local URL. The app is served under the `/Revsilicon/` base path.
+The development server prints its local URL. The app is served from the root path (`/`).
 
 ## Checks and production build
 

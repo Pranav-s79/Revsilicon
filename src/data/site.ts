@@ -1,4 +1,4 @@
-import { officerTonyBuieUrl } from '../assets';
+import { officerColyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
 
 export type NavItem = {
   readonly label: string;
@@ -87,7 +87,12 @@ const officerGroups: readonly OfficerGroup[] = [
         bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
       },
       { role: 'Technical co-president' },
-      { role: 'Operations co-president' },
+      {
+        role: 'Operations co-president',
+        name: 'Coly Kugel',
+        photo: officerColyKugelUrl,
+        bio: 'Howdy, I\'m a Junior Electrical Engineer with a passion for computer architecture, chip design/manufacturing, and sustainability. I believe in giving everyone an equal opportunity to explore their passions no matter who they are. I\'m very big into lifting, Legos, Marvel, DC, Star Wars, and Aggie Sports.',
+      },
     ],
   },
   {
@@ -101,7 +106,7 @@ const officerGroups: readonly OfficerGroup[] = [
   },
   {
     title: 'Operations',
-    officers: [{ role: 'Treasurer' }],
+    officers: [{ role: 'Treasurer', name: 'Pranav Senthilkumar', photo: officerPranavSenthilkumarUrl }],
   },
 ];
 
