@@ -451,7 +451,6 @@ button {
 .process-heading h2,
 .phase-heading h2,
 .teams-intro h2,
-.apply-section h2,
 .support-intro h2 {
   margin: 18px 0 0;
   font-size: clamp(32px, 3.6vw, 52px);
@@ -2214,8 +2213,8 @@ button {
 
 .apply-section {
   padding: clamp(84px, 9vw, 132px) 0;
-  background: var(--cream);
-  border-bottom: 1px solid var(--line);
+  color: var(--white);
+  background: linear-gradient(138deg, #260000 0%, var(--maroon) 48%, var(--navy-deep) 100%);
 }
 
 .apply-layout {
@@ -2225,8 +2224,17 @@ button {
   align-items: center;
 }
 
-.apply-section .micro-label { color: var(--red); }
-.apply-section h2 { color: var(--navy); }
+.apply-section .micro-label { color: var(--red-highlight); }
+
+.apply-section h1 {
+  max-width: 640px;
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(38px, 4.6vw, 60px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
 
 .apply-button {
   position: relative;
@@ -2237,11 +2245,11 @@ button {
   margin-top: 30px;
   padding: 0 32px;
   overflow: hidden;
-  color: var(--white);
+  color: var(--maroon);
   font-size: 15px;
   cursor: pointer;
-  background: var(--maroon);
-  border: 1px solid var(--red);
+  background: var(--white);
+  border: 1px solid var(--white);
   transition: gap 200ms ease, background 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
@@ -2249,15 +2257,15 @@ button {
   position: absolute;
   inset: 0;
   content: '';
-  background: linear-gradient(100deg, transparent 30%, rgba(251, 250, 246, 0.28), transparent 70%);
+  background: linear-gradient(100deg, transparent 30%, rgba(80, 0, 0, 0.16), transparent 70%);
   transform: translateX(-120%);
   animation: apply-sheen 3.4s 1s ease-in-out infinite;
 }
 
 .apply-button:hover {
   gap: 26px;
-  background: var(--maroon-mid);
-  box-shadow: 0 16px 34px rgba(80, 0, 0, 0.4);
+  background: var(--cream);
+  box-shadow: 0 16px 34px rgba(20, 0, 2, 0.35);
   transform: translateY(-2px);
 }
 

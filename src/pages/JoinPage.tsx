@@ -4,23 +4,11 @@ import { contact, site } from '../data/site';
 export default function JoinPage() {
   return (
     <main id="main-content" className="inner-page join-page">
-      <section className="inner-hero join-hero" aria-labelledby="join-heading">
-        <div className="container inner-hero-grid">
-          <div>
-            <p className="micro-label">Membership</p>
-            <h1 id="join-heading">Room for anyone willing to learn</h1>
-          </div>
-          <p>
-            We teach the fundamentals, then put you on a team building the chip.
-          </p>
-        </div>
-      </section>
-
       <section className="apply-section" aria-labelledby="apply-heading">
         <div className="container apply-layout">
           <Reveal>
             <p className="micro-label">Timeline</p>
-            <h2 id="apply-heading">Applications open each semester.</h2>
+            <h1 id="apply-heading">Applications open each semester.</h1>
             <a className="apply-button" href={contact.applyForm} target="_blank" rel="noreferrer noopener">
               <span>Apply here</span>
               <span className="apply-arrow" aria-hidden="true">↗</span>
