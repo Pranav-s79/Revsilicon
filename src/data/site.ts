@@ -86,7 +86,7 @@ const officerGroups: readonly OfficerGroup[] = [
         photo: officerTonyBuieUrl,
         major: 'Electrical Engineering',
         gradYear: '2028',
-        bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
+        bio: 'Howdy, I\'m Tony! I have a deep interest in semiconductor design and fabrication. I firmly believe in educating the next-generation of engineers to bring genuine impact in the VLSI industry. I love meeting new people, and sipping espresso drinks and tea!',
       },
       { role: 'Technical president', name: 'Chinmaiyi' },
       {
