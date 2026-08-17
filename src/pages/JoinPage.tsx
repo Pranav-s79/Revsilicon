@@ -1,5 +1,58 @@
+import { useState } from 'react';
+import { logoPlateCleanUrl, revsiliconLogoUrl } from '../assets';
 import { Reveal } from '../components/Reveal';
 import { contact, site } from '../data/site';
+
+/**
+ * Proof of concept: hover either half to see it take over the panel with a
+ * sliding flex-basis transition. Copy is placeholder — swap before shipping.
+ */
+function PathSplit() {
+  const [hovered, setHovered] = useState<'bootcamp' | 'project' | null>(null);
+
+  return (
+    <div className="path-split">
+      <button
+        type="button"
+        className={`path-panel path-panel-bootcamp ${hovered === 'bootcamp' ? 'is-grown' : ''} ${hovered === 'project' ? 'is-shrunk' : ''}`}
+        onMouseEnter={() => setHovered('bootcamp')}
+        onMouseLeave={() => setHovered(null)}
+        onFocus={() => setHovered('bootcamp')}
+        onBlur={() => setHovered(null)}
+      >
+        <img src={logoPlateCleanUrl} alt="" className="path-panel-mark" aria-hidden="true" />
+        <p className="path-panel-index">01</p>
+        <h3>Bootcamp</h3>
+        <p className="path-panel-tag">New to chip design</p>
+        <ul className="path-panel-detail">
+          <li>Runs one semester, start to finish</li>
+          <li>Learn digital design, verification, and RISC-V fundamentals</li>
+          <li>Group up to build a RISC-V processor</li>
+          <li>Learn physical design to implement it together</li>
+        </ul>
+      </button>
+
+      <button
+        type="button"
+        className={`path-panel path-panel-project ${hovered === 'project' ? 'is-grown' : ''} ${hovered === 'bootcamp' ? 'is-shrunk' : ''}`}
+        onMouseEnter={() => setHovered('project')}
+        onMouseLeave={() => setHovered(null)}
+        onFocus={() => setHovered('project')}
+        onBlur={() => setHovered(null)}
+      >
+        <img src={revsiliconLogoUrl} alt="" className="path-panel-mark" aria-hidden="true" />
+        <p className="path-panel-index">02</p>
+        <h3>CORE team</h3>
+        <p className="path-panel-tag">Already comfortable with the basics</p>
+        <ul className="path-panel-detail">
+          <li>Work directly on the GPU + AI inference chip</li>
+          <li>Run the full ASIC flow, start to finish</li>
+          <li>Build alongside members who've done it before</li>
+        </ul>
+      </button>
+    </div>
+  );
+}
 
 export default function JoinPage() {
   return (
@@ -19,6 +72,17 @@ export default function JoinPage() {
             <p className="micro-label">Questions?</p>
             <a className="apply-email" href={`mailto:${contact.email}`}>{contact.email}</a>
             <p>Ask what a week looks like, how to prepare, or where your interests fit.</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="path-section" aria-labelledby="path-heading">
+        <div className="container">
+          <Reveal className="path-intro">
+            <h2 id="path-heading">Two ways to start</h2>
+          </Reveal>
+          <Reveal delay={90}>
+            <PathSplit />
           </Reveal>
         </div>
       </section>
