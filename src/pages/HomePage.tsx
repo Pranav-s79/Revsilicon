@@ -51,7 +51,7 @@ export function HomePage() {
           <p className="hero-kicker">TEXAS A&amp;M CHIP DESIGN</p>
           <h1 id="home-heading">
             <span className="hero-line"><span>Aggies designing</span></span>{' '}
-            <span className="hero-line hero-line-accent"><span>real silicon.</span></span>
+            <span className="hero-line hero-line-accent"><span>real silicon</span></span>
           </h1>
           <div className="hero-actions">
             <Link className="solid-button" to="/join">Join the team <span aria-hidden="true">↗</span></Link>
@@ -65,7 +65,6 @@ export function HomePage() {
           <Reveal className="intent-copy">
             <p className="micro-label">OUR MISSION</p>
             <h2 id="intent-heading">Learn<br />Design<br />Tapeout</h2>
-            <p>Aggies can arrive with no VLSI background, leave ready for the industry.</p>
           </Reveal>
           <Reveal className="intent-values" delay={110}>
             {site.values.map((value, index) => (

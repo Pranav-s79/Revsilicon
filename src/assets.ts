@@ -1,4 +1,5 @@
 import logoMarkUrl from '../assets/logo-mark.png';
+import logoPlateCleanUrl from '../assets/logo-plate-clean.png';
 import logoPlateUrl from '../assets/logo-plate.png';
 import dogRunCycleUrl from '../assets/dog-run-cycle-white.png';
 import officerTonyBuieUrl from '../assets/officers/tony-buie.webp';
@@ -9,6 +10,7 @@ import revsiliconLogoUrl from '../assets/revsilicon-logo.webp';
 export {
   dogRunCycleUrl,
   logoMarkUrl,
+  logoPlateCleanUrl,
   logoPlateUrl,
   officerTonyBuieUrl,
   officerColyKugelUrl,

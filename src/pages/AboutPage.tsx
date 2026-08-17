@@ -105,8 +105,7 @@ export default function AboutPage() {
       <section className="officers-section" aria-labelledby="officers-heading">
         <div className="inner-hero team-hero">
           <div className="container team-hero-content">
-            <p className="micro-label">OFFICERS</p>
-            <h1 id="officers-heading">Meet the officers.</h1>
+            <h1 id="officers-heading">Meet the officers</h1>
           </div>
         </div>
 

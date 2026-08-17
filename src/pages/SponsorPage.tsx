@@ -16,12 +16,6 @@ const support = [
   },
 ] as const;
 
-const sharedValues = [
-  ['Students first', 'What members learn and own stays at the center of the partnership.'],
-  ['Meaningful work', 'Your support funds engineering work students actually do.'],
-  ['Open doors', 'Mentorship makes a semiconductor career feel within reach.'],
-] as const;
-
 export default function SponsorPage() {
   return (
     <main id="main-content" className="inner-page sponsor-page">
@@ -29,7 +23,7 @@ export default function SponsorPage() {
         <div className="container inner-hero-grid">
           <div>
             <p className="micro-label">PARTNER WITH REV SILICON</p>
-            <h1 id="sponsor-heading">Sponsor hands-on chip design.</h1>
+            <h1 id="sponsor-heading">Sponsor hands-on chip design</h1>
           </div>
           <p>
             We partner with organizations that believe engineers are made by building. We give Aggies the tools,
@@ -57,20 +51,8 @@ export default function SponsorPage() {
 
       <section className="partner-section" aria-labelledby="partner-heading">
         <div className="container partner-layout">
-          <Reveal className="partner-copy">
-            <h2 id="partner-heading">Aligned on what matters.</h2>
-            <dl className="partner-returns">
-              {sharedValues.map(([title, detail]) => (
-                <div key={title}>
-                  <dt>{title}</dt>
-                  <dd>{detail}</dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-
-          <Reveal className="partner-contact" delay={110}>
-            <h3>Build the next generation with us.</h3>
+          <Reveal className="partner-contact">
+            <h2 id="partner-heading">Build the next generation with us.</h2>
             <p>Tell us what your organization cares about, and we’ll build the partnership around it.</p>
             <a className="solid-button sponsor-button" href={`mailto:${contact.email}?subject=Sponsoring%20Rev%20Silicon`}>
               Start a partnership <span aria-hidden="true">↗</span>

@@ -264,9 +264,7 @@ export function ProcessFlow() {
       <StageDefs />
       <div className="container">
         <Reveal className="process-heading">
-          <p className="micro-label">The complete path</p>
           <h2 id="process-heading">Concept to silicon.</h2>
-          <p>Six stages, from architecture through tapeout.</p>
         </Reveal>
 
         <Reveal delay={90} className="process-experience">

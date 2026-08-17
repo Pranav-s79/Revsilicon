@@ -8,11 +8,30 @@ export default function JoinPage() {
         <div className="container inner-hero-grid">
           <div>
             <p className="micro-label">Membership</p>
-            <h1 id="join-heading">Room for anyone willing to learn.</h1>
+            <h1 id="join-heading">Room for anyone willing to learn</h1>
           </div>
           <p>
             We teach the fundamentals, then put you on a team building the chip.
           </p>
+        </div>
+      </section>
+
+      <section className="apply-section" aria-labelledby="apply-heading">
+        <div className="container apply-layout">
+          <Reveal>
+            <p className="micro-label">Timeline</p>
+            <h2 id="apply-heading">Applications open each semester.</h2>
+            <a className="apply-button" href={contact.applyForm} target="_blank" rel="noreferrer noopener">
+              <span>Apply here</span>
+              <span className="apply-arrow" aria-hidden="true">↗</span>
+            </a>
+          </Reveal>
+
+          <Reveal className="apply-contact" delay={100}>
+            <p className="micro-label">Questions?</p>
+            <a className="apply-email" href={`mailto:${contact.email}`}>{contact.email}</a>
+            <p>Ask what a week looks like, how to prepare, or where your interests fit.</p>
+          </Reveal>
         </div>
       </section>
 
@@ -45,29 +64,6 @@ export default function JoinPage() {
             <a className="text-link dark" href={contact.resources} target="_blank" rel="noreferrer noopener">
               Open the resource repo <span aria-hidden="true">↗</span>
             </a>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="apply-section" aria-labelledby="apply-heading">
-        <div className="container apply-layout">
-          <Reveal>
-            <p className="micro-label">Timeline</p>
-            <h2 id="apply-heading">Applications open each semester.</h2>
-            <p className="apply-note">
-              The application form will appear here when available.
-            </p>
-            <button className="apply-button" type="button" disabled>
-              <span>Apply here</span>
-              <span className="apply-arrow" aria-hidden="true">↗</span>
-            </button>
-            <p className="apply-status">FORM OPENS FALL 2026</p>
-          </Reveal>
-
-          <Reveal className="apply-contact" delay={100}>
-            <p className="micro-label">Questions?</p>
-            <a className="apply-email" href={`mailto:${contact.email}`}>{contact.email}</a>
-            <p>Ask what a week looks like, how to prepare, or where your interests fit.</p>
           </Reveal>
         </div>
       </section>

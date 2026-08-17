@@ -105,9 +105,9 @@ export function EventChart() {
       <div className="container">
         <div className="calendar-heading">
           <div>
-            <h2 id="calendar-heading">The club, in motion.</h2>
+            <h2 id="calendar-heading">Club calendar</h2>
           </div>
-          <p className="chart-unit">WORKSHOPS · BUILD NIGHTS · SPEAKERS · MILESTONES</p>
+          <p className="calendar-note">Events to be decided. Sample events shown.</p>
         </div>
 
         <figure className={`calendar-figure ${open ? 'has-open-card' : ''}`}>

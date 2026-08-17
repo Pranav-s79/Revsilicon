@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { logoMarkUrl } from '../assets';
+import { logoPlateCleanUrl } from '../assets';
 
 /** Gradient offsets outside 0..1 throw, so a travelling band has to clamp. */
 function addStop(gradient: CanvasGradient, offset: number, color: string) {
@@ -17,7 +17,7 @@ export function FlickerGrid() {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const logo = new Image();
-    logo.src = logoMarkUrl;
+    logo.src = logoPlateCleanUrl;
 
     /** The light sweep is clipped to the mark, so the mark gets its own buffer. */
     const markBuffer = document.createElement('canvas');

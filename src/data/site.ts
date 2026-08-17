@@ -62,6 +62,8 @@ export const contact = {
   instagram: { handle: '@revsilicon', url: 'https://www.instagram.com/revsilicon' },
   linkedin: { handle: '/revsilicon', url: 'https://www.linkedin.com/company/revsilicon' },
   resources: 'https://github.com/revsilicon',
+  /** Wired in JoinPage once applications actually open; the button stays disabled until then. */
+  applyForm: 'https://docs.google.com/forms/d/e/1FAIpQLSexQjvoK58PU585jfed-DDllTDQVDCmo94JbsOAbvURO8jTww/viewform?usp=publish-editor',
 } as const;
 
 /**
@@ -79,16 +81,16 @@ const officerGroups: readonly OfficerGroup[] = [
     title: 'Executive',
     officers: [
       {
-        role: 'Technical co-president',
+        role: 'President',
         name: 'Tony Buie',
         photo: officerTonyBuieUrl,
         major: 'Electrical Engineering',
         gradYear: '2028',
         bio: 'Tony sets the roadmap and keeps the four teams pointed at the same chip. He got hooked on hardware taking apart everything he could find, and now spends most of his time split between datasheets and onboarding the club’s newest members.',
       },
-      { role: 'Technical co-president' },
+      { role: 'Technical president', name: 'Chinmaiyi' },
       {
-        role: 'Operations co-president',
+        role: 'Operations president',
         name: 'Coly Kugel',
         photo: officerColyKugelUrl,
         bio: 'Howdy, I\'m a Junior Electrical Engineer with a passion for computer architecture, chip design/manufacturing, and sustainability. I believe in giving everyone an equal opportunity to explore their passions no matter who they are. I\'m very big into lifting, Legos, Marvel, DC, Star Wars, and Aggie Sports.',
@@ -98,10 +100,12 @@ const officerGroups: readonly OfficerGroup[] = [
   {
     title: 'Technical team leads',
     officers: [
-      { role: 'RTL design lead' },
-      { role: 'Verification lead' },
-      { role: 'Physical design lead' },
-      { role: 'AI architecture lead' },
+      { role: 'RTL / Digital design lead', name: 'Christian Roll' },
+      { role: 'Verification lead', name: 'Bhushan' },
+      { role: 'Physical design lead', name: 'Samhith Komatreddy' },
+      { role: 'Physical design lead', name: 'Sri Hari Ravishankar' },
+      { role: 'AI lead', name: 'Alex Stevens' },
+      { role: 'AI lead', name: 'Tanvi Aggarwal' },
     ],
   },
   {
@@ -121,7 +125,7 @@ export const site = {
 
   values: [
     { title: 'Start from zero', detail: 'We teach the full ASIC flow, no experience needed.' },
-    { title: 'Your block, our chip', detail: 'Four teams, one design.' },
+    { title: 'Built together', detail: 'Four teams, one design.' },
     { title: 'Leave with silicon', detail: 'Graduate having carried a design all the way to fabrication.' },
   ] satisfies readonly Value[],
 
@@ -161,7 +165,7 @@ export const site = {
       title: 'RTL design',
       overview:
         'Write the hardware. You take a block from the architecture spec and turn it into synthesizable SystemVerilog that meets timing.',
-      skills: ['SystemVerilog', 'Digital logic', 'Pipelining & FSMs', 'Git review flow'],
+      skills: ['SystemVerilog', 'Digital logic', 'Data & control paths', 'Computer architecture', 'Git review flow'],
     },
     {
       title: 'Verification',
@@ -173,7 +177,7 @@ export const site = {
       title: 'Physical design',
       overview:
         'Turn logic into layout. You floorplan, place, route, and close timing on a block using the open-source PDK flow.',
-      skills: ['OpenROAD / OpenLane', 'Static timing analysis', 'Floorplanning', 'Linux & Tcl'],
+      skills: ['DRC', 'LVS', 'CTS', 'Static timing analysis', 'Floorplanning', 'Linux & Tcl'],
     },
     {
       title: 'AI architecture',
@@ -229,7 +233,7 @@ export const site = {
 
   project: {
     eyebrow: 'Project 01',
-    title: 'A GPU with AI inference acceleration.',
+    title: 'A GPU with AI inference acceleration',
     description:
       'Our first chip, built on the open-source Vortex GPGPU.',
     attributes: ['RISC-V, Vortex-based', 'Open-source PDK flow', 'Targeting a 2027 shuttle'] as const,
