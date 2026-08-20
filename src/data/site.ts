@@ -1,4 +1,4 @@
-import { officerColyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
+import { officerBhushanMunoliUrl, officerColyKugelUrl, officerPranavSenthilkumarUrl, officerTonyBuieUrl } from '../assets';
 
 export type NavItem = {
   readonly label: string;
@@ -103,7 +103,14 @@ const officerGroups: readonly OfficerGroup[] = [
     title: 'Technical team leads',
     officers: [
       { role: 'RTL / Digital design lead', name: 'Christian Roll' },
-      { role: 'Verification lead', name: 'Bhushan' },
+      {
+        role: 'Verification lead',
+        name: 'Bhushan Munoli',
+        photo: officerBhushanMunoliUrl,
+        major: 'Computer Engineering',
+        gradYear: '2027',
+        bio: 'Howdy, I\'m Bhushan! I\'m a Master\'s engineering student, interested in chip design and fabrication. I\'m passionate about technology and building something meaningful. Other than this, I love playing music and meeting new people.',
+      },
       { role: 'Physical design lead', name: 'Samhith Komatreddy' },
       { role: 'Physical design lead', name: 'Sri Hari Ravishankar' },
       { role: 'AI lead', name: 'Alex Stevens' },
